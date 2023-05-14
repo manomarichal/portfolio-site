@@ -110,6 +110,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   font-family: var(--bs-font-sans-serif);
   font-weight: normal;
   line-height: 1.2;
+  text-align: justify;
   color: var(--bs-tertiary);
 }
 
@@ -11568,4 +11569,8 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.text-justify-center {
+  text-align: justify;
 }
