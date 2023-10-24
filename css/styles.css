@@ -11593,10 +11593,10 @@ div.scroll-container.blue {
 
 div.scroll-container.yellow {
   background-color: #FFC245;
-  display: flex;
-  white-space: nowrap;
   overflow-x: auto;
   overflow-y: hidden;
+  white-space: nowrap;
+  display: flex;
   padding: 10px;
 }
 
