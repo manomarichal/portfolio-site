@@ -11584,7 +11584,8 @@ div.scroll-container {
 
 div.scroll-container.blue {
   background-color: #131429;
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
   white-space: nowrap;
   display: flex;
   padding: 10px;
@@ -11592,15 +11593,17 @@ div.scroll-container.blue {
 
 div.scroll-container.yellow {
   background-color: #FFC245;
-  overflow: auto;
   display: flex;
   white-space: nowrap;
+  overflow-x: auto;
+  overflow-y: hidden;
   padding: 10px;
 }
 
 div.scroll-container.white {
   background-color: #B41617;
-  overflow: auto;
+  overflow-x: auto;
+  overflow-y: hidden;
   white-space: nowrap;
   display: flex;
   padding: 10px;
