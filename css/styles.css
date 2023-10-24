@@ -11588,7 +11588,7 @@ div.scroll-container.blue {
   overflow-y: hidden;
   white-space: nowrap;
   display: flex;
-  padding: 10px;
+  padding: 5px;
 }
 
 div.scroll-container.yellow {
@@ -11597,7 +11597,7 @@ div.scroll-container.yellow {
   overflow-y: hidden;
   white-space: nowrap;
   display: flex;
-  padding: 10px;
+  padding: 5px;
 }
 
 div.scroll-container.white {
@@ -11606,7 +11606,7 @@ div.scroll-container.white {
   overflow-y: hidden;
   white-space: nowrap;
   display: flex;
-  padding: 10px;
+  padding: 5px;
 }
 
 div.scroll-container img {
