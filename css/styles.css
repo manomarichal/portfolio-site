@@ -11575,3 +11575,34 @@ html {
 .text-justify-center {
   text-align: justify;
 }
+div.scroll-container {
+  background-color: #131429;
+  overflow: auto;
+  white-space: nowrap;
+  padding: 10px;
+}
+
+div.scroll-container.blue {
+  background-color: #131429;
+  overflow: auto;
+  white-space: nowrap;
+  padding: 10px;
+}
+
+div.scroll-container.yellow {
+  background-color: #FFC245;
+  overflow: auto;
+  white-space: nowrap;
+  padding: 10px;
+}
+
+div.scroll-container.white {
+  background-color: #B41617;
+  overflow: auto;
+  white-space: nowrap;
+  padding: 10px;
+}
+
+div.scroll-container img {
+  padding: 10px;
+}
