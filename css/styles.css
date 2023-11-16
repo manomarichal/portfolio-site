@@ -11600,8 +11600,17 @@ div.scroll-container.yellow {
   padding: 5px;
 }
 
-div.scroll-container.white {
+div.scroll-container.red {
   background-color: #B41617;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  display: flex;
+  padding: 5px;
+}
+
+div.scroll-container.white {
+  background-color: #FFFFFF;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
