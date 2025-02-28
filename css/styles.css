@@ -11582,15 +11582,6 @@ div.scroll-container {
   padding: 10px;
 }
 
-div.scroll-container.blue {
-  background-color: #131429;
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
-  display: flex;
-  padding: 5px;
-}
-
 div.scroll-container.darkgreen {
   background-color: #deaa3a;
   overflow-x: auto;
@@ -11601,7 +11592,8 @@ div.scroll-container.darkgreen {
 }
 
 div.scroll-container.grey {
-  background-color: #000000;
+  background-color: #454c51;
+  scrollbar-color: #ffffff #454c51;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
@@ -11611,6 +11603,37 @@ div.scroll-container.grey {
 
 div.scroll-container.yellow {
   background-color: #FFC245;
+  scrollbar-color: #ffffff #FFC245;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  display: flex;
+  padding: 5px;
+}
+
+div.scroll-container.darkblue {
+  background-color: #08001f;
+  scrollbar-color: #ffffff #08001f;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  display: flex;
+  padding: 5px;
+}
+
+div.scroll-container.black {
+  background-color: #000000;
+  scrollbar-color: #ffffff #000000;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  display: flex;
+  padding: 5px;
+}
+
+div.scroll-container.sea {
+  background-color: #189ead;
+  scrollbar-color: #ffffff #189ead;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
@@ -11620,6 +11643,7 @@ div.scroll-container.yellow {
 
 div.scroll-container.red {
   background-color: #B41617;
+  scrollbar-color: #ffffff #B41617;
   overflow-x: auto;
   overflow-y: hidden;
   white-space: nowrap;
