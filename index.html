@@ -2,1167 +2,1618 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
-    <meta content="" name="description" />
-    <meta content="" name="author" />
-    <title>Mano Marichal | Portfolio</title>
-    <!-- Favicon-->
-    <link href="assets/favicon.ico" rel="icon" type="image/x-icon" />
-    <!-- Font Awesome icons (free version)-->
-    <script crossorigin="anonymous" src="https://use.fontawesome.com/releases/v6.1.0/js/all.js"></script>
-    <!-- Google fonts-->
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
-    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet"
-        type="text/css" />
-    <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="css/styles.css" rel="stylesheet" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mano Marichal -- Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
+    rel="stylesheet">
+  <style>
+    /* ============================================================
+   style.css -- Mano Marichal Portfolio
+   Autumn Fantasy Theme
+   ============================================================ */
+
+    /* -- VARIABLES ------------------------------------------------ */
+    :root {
+      --bg: #0d1a0e;
+      --bg-panel: #16271a;
+      --green-dark: #1e3d22;
+      --green-mid: #2d5a34;
+      --sage: #4a7c52;
+      --gold: #c8842a;
+      --amber: #e09940;
+      --rust: #c45c1a;
+      --bordeaux: #6e1f2b;
+      --crimson: #8b2635;
+      --cream: #f0e6c8;
+      --mist: #b8c9a0;
+      --border: rgba(200, 132, 42, 0.25);
+    }
+
+    /* -- RESET ---------------------------------------------------- */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: 'Lora', Georgia, serif;
+      overflow-x: hidden;
+    }
+
+    body.modal-open {
+      overflow: hidden;
+    }
+
+    /* -- BACKGROUND ----------------------------------------------- */
+    .forest-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 100%, rgba(30, 61, 34, .6) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(110, 31, 43, .15) 0%, transparent 60%),
+        linear-gradient(180deg, #0a1209 0%, #0d1a0e 40%, #111f12 100%);
+    }
+
+    /* grain texture removed */
+    /* Leaf canvas -- above page (z:2), below modal (z:300) */
+    #leaf-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 1;
+      pointer-events: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* -- NAV ------------------------------------------------------ */
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 200;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.2rem 3rem;
+      background: linear-gradient(rgba(10, 18, 9, .95), transparent);
+      backdrop-filter: blur(4px);
+      border-bottom: 1px solid rgba(200, 132, 42, .1);
+    }
+
+    .nav-brand {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: 1rem;
+      color: var(--amber);
+      text-decoration: none;
+      letter-spacing: .05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-family: 'Cinzel', serif;
+      font-size: .78rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--mist);
+      text-decoration: none;
+      transition: color .3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--amber);
+    }
+
+    /* -- SHARED SECTION STYLES ------------------------------------ */
+    section {
+      position: relative;
+      z-index: 2;
+      padding: 6rem 2rem;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+
+    .section-label {
+      font-family: 'Cinzel', serif;
+      font-size: .72rem;
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .8rem;
+    }
+
+    .section-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      color: var(--cream);
+      text-shadow: 0 0 40px rgba(200, 132, 42, .2);
+    }
+
+    .section-rule {
+      width: 80px;
+      height: 2px;
+      margin: 1.2rem auto 0;
+      background: linear-gradient(90deg, transparent, var(--bordeaux), var(--gold), var(--bordeaux), transparent);
+    }
+
+    /* -- HERO ----------------------------------------------------- */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8rem 4rem 5rem;
+    }
+
+    .hero-inner {
+      display: flex;
+      align-items: center;
+      gap: 5rem;
+      max-width: 1000px;
+      width: 100%;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-subtitle {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(.7rem, 1.3vw, .88rem);
+      letter-spacing: .28em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: .9rem;
+      animation: fadeUp 1s ease both;
+    }
+
+    .hero-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      color: var(--cream);
+      line-height: 1.1;
+      text-shadow: 0 0 80px rgba(200, 132, 42, .3), 0 2px 4px rgba(0, 0, 0, .8);
+      animation: fadeUp 1s .1s ease both;
+    }
+
+    .hero-title span {
+      color: var(--amber);
+    }
+
+    .hero-divider {
+      width: 100px;
+      height: 1px;
+      margin: 1.6rem 0;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      animation: fadeUp 1s .2s ease both;
+    }
+
+    .hero-bio {
+      font-size: .98rem;
+      line-height: 1.88;
+      max-width: 560px;
+      color: rgba(240, 230, 200, .72);
+      animation: fadeUp 1s .3s ease both;
+    }
+
+    .hero-bio+.hero-bio {
+      margin-top: .9rem;
+      animation-delay: .4s;
+    }
+
+    .scroll-hint {
+      margin-top: 2.8rem;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: .6rem;
+      animation: fadeUp 1s .7s ease both;
+    }
+
+    .scroll-hint span {
+      font-family: 'Cinzel', serif;
+      font-size: .65rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    .scroll-arrow {
+      width: 1px;
+      height: 38px;
+      background: linear-gradient(var(--gold), transparent);
+      animation: scrollPulse 2.2s ease-in-out infinite;
+    }
+
+    /* Profile photo */
+    .hero-photo-wrap {
+      flex-shrink: 0;
+      position: relative;
+      width: 300px;
+      height: 300px;
+      animation: fadeUp 1s .2s ease both;
+    }
+
+    .hero-photo-wrap::before {
+      /* spinning gradient ring */
+      content: '';
+      position: absolute;
+      inset: -4px;
+      border-radius: 50%;
+      background: conic-gradient(var(--bordeaux), var(--rust), var(--gold), var(--amber), var(--rust), var(--bordeaux));
+      animation: rotateBorder 10s linear infinite;
+    }
+
+    .hero-photo-wrap::after {
+      /* gap between ring and photo */
+      content: '';
+      position: absolute;
+      inset: -1px;
+      border-radius: 50%;
+      background: var(--bg);
+    }
+
+    .hero-photo {
+      position: relative;
+      z-index: 1;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: linear-gradient(135deg, var(--green-dark), var(--bg-panel));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    .photo-placeholder {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .5rem;
+      color: var(--sage);
+      text-align: center;
+      padding: 1rem;
+      font-family: 'Cinzel', serif;
+      font-size: .56rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .photo-placeholder svg {
+      opacity: .45;
+    }
+
+    /* -- PROJECT GRID --------------------------------------------- */
+    #projects {
+      padding-top: 4rem;
+    }
+
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.8rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* -- PROJECT CARD --------------------------------------------- */
+    .project-card {
+      background: linear-gradient(145deg, rgba(22, 39, 26, .95), rgba(13, 26, 14, .98));
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      transition: transform .4s, box-shadow .4s, border-color .4s;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .6), 0 0 40px rgba(200, 132, 42, .1);
+      border-color: rgba(200, 132, 42, .5);
+    }
+
+    /* Corner ornaments on featured card */
+    .corner-tl,
+    .corner-br {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      border-color: rgba(200, 132, 42, .4);
+      border-style: solid;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .corner-tl {
+      top: 10px;
+      left: 10px;
+      border-width: 1px 0 0 1px;
+    }
+
+    .corner-br {
+      bottom: 10px;
+      right: 10px;
+      border-width: 0 1px 1px 0;
+    }
+
+    .project-card.featured {
+      grid-column: span 2;
+    }
+
+    /* Card image */
+    .card-image {
+      width: 100%;
+      height: 185px;
+      overflow: hidden;
+      position: relative;
+      flex-shrink: 0;
+      background: linear-gradient(135deg, var(--green-dark), var(--bg-panel));
+    }
+
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .5s;
+      display: block;
+    }
+
+    .project-card:hover .card-image img {
+      transform: scale(1.05);
+    }
+
+    .card-image-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(transparent, rgba(13, 26, 14, .85));
+      pointer-events: none;
+    }
+
+    /* Placeholder for missing images */
+    .img-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: .5rem;
+      color: rgba(184, 201, 160, .28);
+      font-family: 'Cinzel', serif;
+      font-size: .6rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .img-placeholder svg {
+      opacity: .25;
+    }
+
+    /* Accent bar */
+    .card-accent {
+      height: 3px;
+    }
+
+    .card-accent.amber {
+      background: linear-gradient(90deg, var(--rust), var(--gold), var(--amber));
+    }
+
+    .card-accent.green {
+      background: linear-gradient(90deg, var(--green-dark), var(--green-mid), var(--sage));
+    }
+
+    .card-accent.crimson {
+      background: linear-gradient(90deg, var(--bordeaux), var(--crimson), var(--rust));
+    }
+
+    /* Card body */
+    .card-body {
+      padding: 1.4rem 1.8rem 1rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card-category {
+      font-family: 'Cinzel', serif;
+      font-size: .62rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--sage);
+      margin-bottom: .5rem;
+    }
+
+    .card-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: var(--cream);
+      margin-bottom: .8rem;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: .875rem;
+      line-height: 1.75;
+      color: rgba(240, 230, 200, .62);
+      margin-bottom: 1.1rem;
+      flex: 1;
+    }
+
+    /* Tags */
+    .card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .4rem;
+    }
+
+    .tag {
+      font-family: 'Cinzel', serif;
+      font-size: .6rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: .25rem .65rem;
+      border-radius: 2px;
+      border: 1px solid;
+      transition: all .25s;
+      cursor: default;
+    }
+
+    .tag-amber {
+      color: var(--amber);
+      border-color: rgba(200, 132, 42, .4);
+      background: rgba(200, 132, 42, .08);
+    }
+
+    .tag-green {
+      color: var(--mist);
+      border-color: rgba(74, 124, 82, .5);
+      background: rgba(74, 124, 82, .1);
+    }
+
+    .tag-red {
+      color: #d4707a;
+      border-color: rgba(110, 31, 43, .6);
+      background: rgba(110, 31, 43, .15);
+    }
+
+    .tag-mist {
+      color: rgba(184, 201, 160, .7);
+      border-color: rgba(184, 201, 160, .2);
+      background: rgba(184, 201, 160, .05);
+    }
+
+    .tag-amber:hover {
+      background: rgba(200, 132, 42, .2);
+    }
+
+    .tag-green:hover {
+      background: rgba(74, 124, 82, .25);
+      border-color: var(--sage);
+    }
+
+    .tag-red:hover {
+      background: rgba(110, 31, 43, .3);
+    }
+
+    /* Award badge */
+    .card-award {
+      display: inline-flex;
+      align-items: center;
+      gap: .4rem;
+      margin-top: .8rem;
+      font-family: 'Cinzel', serif;
+      font-size: .6rem;
+      letter-spacing: .1em;
+      color: var(--amber);
+      background: rgba(200, 132, 42, .1);
+      border: 1px solid rgba(200, 132, 42, .28);
+      padding: .25rem .7rem;
+      border-radius: 2px;
+    }
+
+    /* Card footer */
+    .card-footer {
+      padding: .9rem 1.8rem 1.4rem;
+      border-top: 1px solid rgba(200, 132, 42, .1);
+    }
+
+    .btn-more {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: 'Cinzel', serif;
+      font-size: .68rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: var(--amber);
+      background: transparent;
+      border: 1px solid rgba(200, 132, 42, .35);
+      padding: .5rem 1.1rem;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: all .3s;
+    }
+
+    .btn-more:hover {
+      background: rgba(200, 132, 42, .12);
+      border-color: var(--amber);
+      color: var(--cream);
+    }
+
+    .btn-more svg {
+      transition: transform .3s;
+    }
+
+    .btn-more:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* -- MODAL ---------------------------------------------------- */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      z-index: 300;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 2rem 1rem 4rem;
+      overflow-y: auto;
+      background: rgba(4, 9, 4, .9);
+      backdrop-filter: blur(10px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .35s;
+    }
+
+    .modal-backdrop.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: linear-gradient(160deg, #192a1b, #0f1e10);
+      border: 1px solid rgba(200, 132, 42, .3);
+      border-radius: 6px;
+      width: 100%;
+      max-width: 840px;
+      position: relative;
+      overflow: hidden;
+      margin-top: 2rem;
+      transform: translateY(40px) scale(.97);
+      transition: transform .4s cubic-bezier(.22, 1, .36, 1);
+    }
+
+    .modal-backdrop.open .modal {
+      transform: none;
+    }
+
+    .modal-top-bar {
+      height: 4px;
+      background: linear-gradient(90deg, var(--bordeaux), var(--rust), var(--gold), var(--amber));
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      z-index: 10;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: rgba(13, 26, 14, .85);
+      border: 1px solid rgba(200, 132, 42, .3);
+      color: var(--mist);
+      cursor: pointer;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all .3s;
+    }
+
+    .modal-close:hover {
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    .modal-hero-img {
+      width: 100%;
+      height: 280px;
+      overflow: hidden;
+      position: relative;
+      background: linear-gradient(135deg, var(--green-dark), var(--bg-panel));
+    }
+
+    .modal-hero-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .modal-hero-img .img-placeholder {
+      height: 100%;
+    }
+
+    .modal-img-overlay {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 140px;
+      background: linear-gradient(transparent, #0f1e10);
+      pointer-events: none;
+    }
+
+    .modal-content {
+      padding: 2rem 2.8rem 2.8rem;
+    }
+
+    .modal-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: .7rem;
+    }
+
+    .modal-category {
+      font-family: 'Cinzel', serif;
+      font-size: .65rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--sage);
+    }
+
+    .modal-date {
+      font-family: 'Cinzel', serif;
+      font-size: .6rem;
+      letter-spacing: .15em;
+      color: rgba(184, 201, 160, .38);
+    }
+
+    .modal-title {
+      font-family: 'Cinzel Decorative', serif;
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      color: var(--cream);
+      margin-bottom: .5rem;
+    }
+
+    .modal-rule {
+      width: 60px;
+      height: 2px;
+      margin-bottom: 1.4rem;
+      background: linear-gradient(90deg, var(--bordeaux), var(--gold));
+    }
+
+    .modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+      margin-bottom: 1.8rem;
+    }
+
+    .modal-section {
+      margin-bottom: 1.8rem;
+    }
+
+    .modal-section-title {
+      font-family: 'Cinzel', serif;
+      font-size: .7rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: .8rem;
+      display: flex;
+      align-items: center;
+      gap: .7rem;
+    }
+
+    .modal-section-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(200, 132, 42, .3), transparent);
+    }
+
+    .modal-text {
+      font-size: .95rem;
+      line-height: 1.9;
+      color: rgba(240, 230, 200, .72);
+    }
+
+    .modal-text p {
+      margin-bottom: .9rem;
+    }
+
+    .modal-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .modal-bullets {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: .6rem;
+    }
+
+    .modal-bullets li {
+      display: flex;
+      gap: .9rem;
+      align-items: flex-start;
+      font-size: .92rem;
+      line-height: 1.72;
+      color: rgba(240, 230, 200, .7);
+    }
+
+    .modal-bullets li::before {
+      content: '*';
+      color: var(--rust);
+      flex-shrink: 0;
+      font-size: .6rem;
+      margin-top: .28rem;
+    }
+
+    .modal-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .8rem;
+      margin-top: 2rem;
+      padding-top: 1.6rem;
+      border-top: 1px solid rgba(200, 132, 42, .15);
+    }
+
+    .modal-link {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      font-family: 'Cinzel', serif;
+      font-size: .68rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--cream);
+      text-decoration: none;
+      border: 1px solid rgba(200, 132, 42, .35);
+      padding: .55rem 1.2rem;
+      border-radius: 2px;
+      background: rgba(200, 132, 42, .07);
+      transition: all .3s;
+    }
+
+    .modal-link:hover {
+      background: rgba(200, 132, 42, .18);
+      border-color: var(--amber);
+      color: var(--amber);
+    }
+
+    .modal-link.primary {
+      background: rgba(200, 132, 42, .16);
+      border-color: var(--gold);
+      color: var(--amber);
+    }
+
+    .modal-link.primary:hover {
+      background: rgba(200, 132, 42, .3);
+    }
+
+    .modal-link svg {
+      transition: transform .3s;
+    }
+
+    .modal-link:hover svg {
+      transform: translateX(3px);
+    }
+
+    /* -- CONTACT -------------------------------------------------- */
+    .contact-inner {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .contact-note {
+      font-size: .9rem;
+      color: rgba(240, 230, 200, .5);
+      margin-top: 1.2rem;
+      line-height: 1.8;
+    }
+
+    .contact-email {
+      display: inline-block;
+      margin-top: 1.8rem;
+      font-family: 'Cinzel', serif;
+      font-size: 1.1rem;
+      color: var(--amber);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(200, 132, 42, .3);
+      padding-bottom: .2rem;
+      transition: color .3s, border-color .3s;
+    }
+
+    .contact-email:hover {
+      color: var(--cream);
+      border-color: var(--cream);
+    }
+
+    /* -- FOOTER --------------------------------------------------- */
+    footer {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 2rem;
+      border-top: 1px solid rgba(200, 132, 42, .1);
+      font-family: 'Cinzel', serif;
+      font-size: .68rem;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: rgba(184, 201, 160, .32);
+    }
+
+    .ornament {
+      color: rgba(200, 132, 42, .28);
+      font-size: 1.2rem;
+      letter-spacing: .5em;
+      margin-bottom: .8rem;
+    }
+
+    /* -- SCROLL REVEAL -------------------------------------------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .85s, transform .85s;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* -- KEYFRAMES ------------------------------------------------ */
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+
+      to {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @keyframes rotateBorder {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes scrollPulse {
+
+      0%,
+      100% {
+        opacity: .4;
+        transform: scaleY(.9);
+      }
+
+      50% {
+        opacity: 1;
+        transform: scaleY(1.1);
+      }
+    }
+
+    /* -- RESPONSIVE ----------------------------------------------- */
+    @media (max-width: 960px) {
+      .project-card.featured {
+        grid-column: span 1;
+      }
+
+      .hero-inner {
+        gap: 3rem;
+      }
+
+      .hero-photo-wrap,
+      .hero-photo {
+        width: 160px;
+        height: 160px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      nav {
+        padding: 1rem 1.5rem;
+      }
+
+      .hero {
+        padding: 6rem 1.5rem 3rem;
+      }
+
+      .hero-inner {
+        flex-direction: column-reverse;
+        align-items: center;
+        text-align: center;
+        gap: 2rem;
+      }
+
+      .hero-text {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-divider {
+        margin: 1.4rem auto;
+      }
+
+      .scroll-hint {
+        align-items: center;
+      }
+
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .modal-content {
+        padding: 1.5rem 1.5rem 2rem;
+      }
+
+      .modal-hero-img {
+        height: 200px;
+      }
+    }
+  </style>
 </head>
 
-<body id="page-top">
-    <!-- Navigation-->
-    <nav class="navbar navbar-expand-lg bg-primary text-uppercase fixed-top" id="mainNav">
-        <div class="container">
-            <a class="navbar-brand text-white" href="./index.html">Mano Marichal</a>
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ms-auto">
+<body>
 
-                    <li class="nav-item mx-0 mx-lg-1">
-                        <a class="btn btn-outline-light btn-social mx-1"
-                            href="https://www.linkedin.com/in/mano-marichal-36b949195/" target="_blank">
-                            <i class="fab fa-fw fa-linkedin-in"></i>
-                        </a>
-                    </li>
+  <div class="forest-bg"></div>
+  <canvas id="leaf-canvas"></canvas>
 
-                    <li class="nav-item mx-0 mx-lg-1">
-                        <a class="btn btn-outline-light btn-social mx-1" href="https://github.com/manomarichal"
-                            target="_blank">
-                            <i class="fab fa-fw fa-github"></i>
-                        </a>
-                    </li>
-                    <li class="nav-item mx-0 mx-lg-1">
-                        <a class="btn btn-outline-light btn-social mx-1" href="https://twitter.com/shanosmm"
-                            target="_blank">
-                            <i class="fab fa-fw fa-twitter"></i>
-                        </a>
-                    </li>
+  <nav>
+    <a href="#" class="nav-brand">Mano Marichal</a>
+    <ul class="nav-links">
+      <li><a href="#projects">Works</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
 
-                    <li class="nav-item mx-0 mx-lg-1">
-                        <a class="btn btn-outline-light btn-social mx-1" href="https://shano19.itch.io/"
-                            target="_blank">
-                            <i class="fab fa-fw fa-itch-io"></i>
-                        </a>
-                    </li>
-                </ul>
-            </div>
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="hero-subtitle">Game Designer &amp; Programmer</p>
+        <h1 class="hero-title">Mano <span>Marichal</span></h1>
+        <div class="hero-divider"></div>
+        <p class="hero-bio">
+          Helloo! I'm a game designer and programmer with half of their brain permanently residing in the fantasy worlds
+          we call games.
+          I am passionate about not just playing and making games, but understanding what they are and can mean for
+          people. After studying
+          Computer Science in Antwerp I pursued a master's in Game Studies &amp; Engineering
+          in Austria, where I dove into how games shape culture, construct identity, and
+          carry responsibility.
+        </p>
+        <p class="hero-bio">
+          I believe designing games is not just about mechanics or systems, but about shaping experiences that influence
+          how people feel, think, and interact with the world. Whether I am prototyping mechanics, programming systems,
+          or discussing theory, my goal remains the same: to create games that are engaging, thoughtful, and
+          responsible.
+        </p>
+      </div>
+
+      <div class="hero-photo-wrap">
+        <div class="hero-photo">
+          <!-- ADD YOUR PHOTO: replace this div with <img src="assets/img/profile.jpg" alt="Mano Marichal"> -->
+          <img src="assets/img/me.png" alt="Mano Marichal">
+
+          </img>
         </div>
-    </nav>
-    <!-- Items Section-->
-    <section class="text-white bg-secondary page-section portfolio" id="portfolioGames">
-        <div class="container">
-            <header class="" id="intro">
-                <!--<img class="masthead-avatar mb-5" src="assets/img/fishbone.png" alt="..." />-->
-                <!-- Masthead Heading-->
-                <br>
-                <div class="d-flex align-items-center">
+      </div>
+  </section>
 
-                    <div>
-                        <br>
-                        <h2 class="text-uppercase mb-0">Hello!</h2>
-                        <br>
-                        <h4 class="text-justify-center mb-0">
-                            <p>I'm a game designer and programmer with a lifelong interest in creating games, and also games as a cultural phenomenom.</p>
-
-                               <p> After studying Computer Science in Antwerp, I went on to do a master’s in Game Studies
-                                and Engineering in Austria. That’s where I really dove into the deeper side of games:
-                                how they shape culture, how players experience identity and gender through play, and
-                                what kind of responsibility we have as developers considering the impact games can have on people. My thesis focused on pay-to-win
-                                microtransactions and its impact on players and the game experience. Along the way, I interned at Dirty Paws Studio as a game designer, spent half a year studying in Tokyo, and
-                                joined sixteen game jams.</p>
-
-
-                            <p>This is a showcase of some
-                                projects I have done. Maybe you'll find something that catches your eye :)</p>
-
-                        </h4>
-                    </div>
-                </div>
-
-                <div class="divider-custom divider-light">
-                    <div class="divider-custom-line"></div>
-                    <div class="divider-custom-line"></div>
-                </div>
-            </header>
-
-            <!-- Portfolio Grid Items-->
-            <div class="row justify-content-center">
-                <!-- Portfolio Item 2-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModalEA">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <h3 class="text-center text-uppercase mb-0">Electric Alps</h3>
-                        <br>
-                        <img class="img-fluid" src="assets/img/portfolio/ea1.jpg" alt="..." />
-                        <br>
-                        <br>
-                        <h6 class="text-center mb-0">Game design internship where I worked on progression and reward
-                            systems
-                        </h6>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#BagelModal">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <h3 class="text-center text-uppercase mb-0">Bagels Of War</h3>
-                        <br>
-                        <img class="img-fluid" src="assets/img/portfolio/bagels.jpg" alt="..." />
-                        <br>
-                        <br>
-                        <h6 class="text-center mb-0">Award-nominated student project I designed and programmed in Godot
-                        </h6>
-                    </div>
-                </div>
-                <!-- Portfolio Item 2-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModalGameJams">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <h3 class="text-center text-uppercase mb-0">Game jams</h3>
-                        <br>
-                        <img class="img-fluid" src="assets/img/portfolio/bertleroyale.jpg" alt="..." />
-                        <br>
-                        <br>
-                        <h6 class="text-center mb-0">Selection of my favorite projects from the 16 game jams I have
-                            participated in</h6>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 2-->
-
-
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModalMarioMaker">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <h3 class="text-center text-uppercase mb-0">Super Mario Maker 2</h3>
-                        <br>
-                        <img class="img-fluid" src="assets/img/portfolio/mm.jpg" alt="..." />
-                        <br>
-                        <br>
-                        <h6 class="text-center mb-0">2D platformer level editor where I designed some famous "troll"
-                            levels</h6>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModalDotMDM">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <h3 class="text-center text-uppercase mb-0">Dungeon of the Mad DM</h3>
-                        <br>
-                        <img class="img-fluid" src="assets/img/portfolio/dotdm.jpg" alt="..." />
-                        <br>
-                        <br>
-                        <h6 class="text-center mb-0">Party boardgame for 2-5 players where you play AGAINST the dungeon
-                            master</h6>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioThesis">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <h3 class="text-center text-uppercase mb-0">Master Thesis</h3>
-                        <br>
-                        <img class="img-fluid" src="assets/img/portfolio/thesis.jpg" alt="..." />
-                        <br>
-                        <br>
-                        <h6 class="text-center mb-0">Scientific research about the impact of Pay-to-Win
-                            microtransactions on the user experience in games
-                        </h6>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 2-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModalCompiler">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <h3 class="masthead-heading text-center text-uppercase mb-0">C compiler</h3>
-                        <br>
-                        <img class="img-fluid" src="assets/img/portfolio/compiler.png" alt="..." />
-                        <br>
-                        <br>
-                        <h6 class="text-center mb-0">Compiler that compiles a subset of C to MIPS, written in Python
-                        </h6>
-                    </div>
-                </div>
-                <!-- Portfolio Item 2-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal"
-                        data-bs-target="#portfolioModalCompression">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <h3 class="masthead-heading text-center text-uppercase mb-0">Size--</h3>
-                        <br>
-                        <img class="img-fluid" src="assets/img/portfolio/pal.jpg" alt="..." />
-                        <br>
-                        <br>
-                        <h6 class="text-center mb-0">Application that can compress and uncompress data
-                            featuring different compression algorithms, written in C++</h6>
-                    </div>
-                </div>
-
-                <!-- Portfolio Item 2-->
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModalGraphics">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <h3 class="masthead-heading text-center text-uppercase mb-0">Graphics engine</h3>
-                        <br>
-                        <img class="img-fluid" src="assets/img/portfolio/cg.jpg" alt="..." />
-                        <br>
-                        <br>
-                        <h6 class="text-center mb-0">Graphics enginge which can render basic 3D shapes
-                            with lighting, textures and shadows. Written in C++</h6>
-                    </div>
-                </div>
-
-
-
-                <div class="col-md-6 col-lg-4 mb-5">
-                    <div class="portfolio-item mx-auto" data-bs-toggle="modal" data-bs-target="#portfolioModalJP">
-                        <div
-                            class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                            <div class="portfolio-item-caption-content text-center text-white"><i
-                                    class="fas fa-plus fa-3x"></i></div>
-                        </div>
-                        <h3 class="masthead-heading text-center text-uppercase mb-0">日本語
-                        </h3>
-                        <br>
-                        <img class="img-fluid" src="assets/img/portfolio/jp.jpg" alt="..." />
-                        <br>
-                        <br>
-                        <h6 class="text-center mb-0">3+ years of self studying Japanese</h6>
-                    </div>
-                </div>
-
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer-->
-    <footer class="footer text-center">
-        <div class="container">
-            <div class="row">
-                <!-- Footer About Text-->
-                <div class="col-lg-4">
-                    <h4 class="text-uppercase mb-4">Contact me at </h4>
-                    <p class="lead mb-4">
-                        mano.marichal@gmail.com
-                    </p>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- Copyright Section-->
-    <div class="copyright py-4 text-center text-white">
-        <div class="container"><small>Copyright &copy; Mano Marichal 2022</small></div>
+  <!-- Project cards are built automatically from the PROJECTS array in the script below -->
+  <section id="projects">
+    <div class="section-header reveal">
+      <p class="section-label">Portfolio</p>
+      <h2 class="section-title">Works &amp; Endeavors</h2>
+      <div class="section-rule"></div>
     </div>
-    <!--Electric Alps-->
-    <div class="portfolio-modal modal fade" id="portfolioModalEA" tabindex="-1"
-        aria-labelledby="portfolioModalVolcanicPanic" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Electric Alps
-                                </h2><br>
-                                <!-- Portfolio Modal - Image-->
-                                <p class="mb-4 text-justify-center">The game I worked on as an intern Game Design at <a
-                                        href="https://www.dirtypaws.studio/" target="_blank">Dirty Paws
-                                        Studio</a>. I helped in designing the progression & reward systems the game will
-                                    feature, and
-                                    blockouts and the mechanical progression of the tutorial. <a target="_blank"
-                                        href="https://www.dirtypaws.studio/electric-alps">
-                                        More info about the game</a></p>
+    <div class="projects-grid" id="projects-grid"></div>
+  </section>
 
-                                <p class="mb-4 text-justify-center">Designing these systems was a very good exercise in
-                                    communication, as I joined a team in progress and had to understand their vision and
-                                    what the various systems I was designing had to achieve. I went through many
-                                    iterations
-                                    of designing, asking and integrating feedback. In the end, I designed the overall
-                                    progression of the game and the various reward and progression systems that the game
-                                    will feature.</p>
-                                <p class="mb-4 text-justify-center">I also helped in designing the tutorial of the game.
-                                    My
-                                    job was to figure out what and how the players learn in the tutorial, and then
-                                    create
-                                    sketches for the levels. I ended up creating 12 levels.
-                                </p>
-                                <p class="mb-4 text-justify-center">A level I designed. This level aims to teach the
-                                    player
-                                    about branching conduits, and is set up in a way that helps the player figure this
-                                    mechanic out without being too explicit.<br></p>
-                                <img src="assets/img/EA.jpg" alt="Oops" style="width:100%;">
-                                <br>
-                                <br>
-                                <p class="mb-4 text-center">A review of my internship by my mentor.<br></p>
-                                <embed src="assets/files/intern.pdf" type="application/pdf" width="70%"
-                                    height="600px" />
-                                <br>
-                                <!-- Portfolio Modal - Text-->
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-xmark fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <section id="contact">
+    <div class="contact-inner reveal">
+      <p class="section-label">Get in Touch</p>
+      <h2 class="section-title">Contact</h2>
+      <div class="section-rule"></div>
+      <p class="contact-note">
+        Whether you have a project in mind, want to collaborate on a game jam,
+        or just want to talk about games -- reach out.
+      </p>
+      <a href="mailto:mano.marichal@gmail.com" class="contact-email">mano.marichal@gmail.com</a>
+      <p class="contact-note">Also via Snowberry Games: mano@snowberrygames.be</p>
     </div>
-    <!-- Carls trash can-->
-    <div class="portfolio-modal modal fade" id="portfolioModalTrashCan" tabindex="-1"
-        aria-labelledby="portfolioModalTrashCan" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Carls trash can
-                                </h2>
-                                <br>
-                                <p class="text-black mb-4 text-justify-center">Carls trash can was considered by many to
-                                    be
-                                    the best troll level
-                                    yet when it released. This was mostly due to it featuring a 5 minute ending sequence
-                                    that subverted almost everything the player had experienced up to that point.</p>
-                                <p class="mb-4">YouTuber CarlSagan42's playthrough of the level</p>
-                                <iframe class="rounded mb-5" width="720" height="405"
-                                    src="https://youtube.com/embed/EkTHhk07nv4"></iframe>
-                                <p class="mb-4">YouTuber DGR's playthrough of the level</p>
-                                <iframe class="rounded mb-5" width="720" height="405"
-                                    src="https://youtube.com/embed/wE034bkhASE"></iframe>
+  </section>
 
-                                <p class="mb-4">YouTuber LinkTijger's playthrough of the level</p>
-                                <iframe class="rounded mb-5" width="720" height="405"
-                                    src="https://youtube.com/embed/9kmNIZGpzUQ"></iframe>
-                                <p class="mb-4">YouTuber Juzcook's playthrough of the level</p>
-                                <iframe class="rounded mb-5" width="720" height="405"
-                                    src="https://youtube.com/embed/RgzyeJ8jUnc"></iframe>
-                                <p class="mb-4">YouTuber GrandPooBears's playthrough of the level</p>
-                                <iframe class="rounded mb-5" width="720" height="405"
-                                    src="https://youtube.com/embed/6qTujFtEyyk"></iframe>
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-xmark fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <footer>
+    <p>&#169; 2025 Mano Marichal -- Game Designer &amp; Programmer</p>
+  </footer>
+
+  <div class="modal-backdrop" id="modal-backdrop">
+    <div class="modal" id="modal"></div>
+  </div>
+
+  <script>
+    /* ============================================================
+       main.js -- Mano Marichal Portfolio
+       ============================================================
+       HOW TO EDIT:
+       - Add / remove / reorder projects in the PROJECTS array below
+       - Each project renders its own card AND modal automatically
+       - To add a project page: create projects/<id>.html from the template
+    
+       CARD ACCENT COLORS: "amber" | "green" | "crimson"
+       TAG CLASSES:        "tag-amber" | "tag-green" | "tag-red" | "tag-mist"
+       ============================================================ */
+
+    const PROJECTS = [
+      {
+        id: 'the-firelight',
+        accent: 'amber',
+        category: 'Commercial Game',
+        title: 'The Firelight (Working Title)',
+        image: 'assets/img/modal_headers/firelight.png',               // e.g. 'assets/img/portfolio/bagels.jpg'
+        desc: 'A two player horror-lite that aims to bring players closer together through a tense test of teamwork. The game is developed under Snowberry Games, a game studio I co-founded.',
+        tags: [
+          { label: 'Team Lead', cls: 'tag-red' },
+          { label: 'Game Design', cls: 'tag-amber' },
+          { label: 'Programming', cls: 'tag-amber' },
+        ],
+        date: '2023 - 2024',
+        overview: `
+      <p>Bagels of War is a tower defense strategy game I developed over roughly a year as my
+      main student project. After concepting I assembled a small team -- two artists, a sound
+      designer, and a composer -- and acted as both lead designer and programmer.</p>
+    `,
+        highlights: [
+          'Led a team of 5 from concept to release.',
+          'Designed all tower-defense mechanics, enemy waves, and progression curves.',
+          'Programmed the full game in Godot / GDScript.',
+          'Top 3 finish in Austria\'s national student game competition.',
+        ],
+        links: [
+          { label: 'Play on itch.io', href: 'https://shano19.itch.io/bagels-of-war', primary: true },
+        ],
+      },
+
+      {
+        id: 'mario-maker',
+        accent: 'green',
+        category: 'Hobby',
+        title: 'Super Mario Maker 2: Troll Levels',
+        image: 'assets/img/modal_headers/mm.jpg',               // e.g. 'assets/img/portfolio/mm.jpg'
+        desc: 'Designed various troll levels built on player psychology and relentless iteration. Some of these reached millions of plays and views on YouTube.',
+        tags: [
+          { label: 'Level Design', cls: 'tag-amber' },
+          { label: 'Player Psychology', cls: 'tag-green' },
+        ],
+        date: '2019 - 2022',
+        award: null,
+        overview: `
+      <p>Troll levels are a special type of level that try
+        to predict what the player will do and punishes them for it, in an
+        entertaining manner. Combining clever traps with a healthy dose of slapstick, troll
+        levels aim to constantly subvert the expectations of the player.</p>
+    `,
+        highlights: [
+          '<strong>The Salt Mines</strong> -- 150+ hours of construction, ~1 hour to complete. Mutates the level between deaths.',
+          "<strong>Carl's Trash Can</strong> -- 5-minute ending sequence that subverts everything the player learned.",
+          'Both levels played by major YouTube creators with millions of combined views.',
+        ],
+        links: [
+          { label: 'YouTube playlist', href: 'https://www.youtube.com/playlist?list=PL5RGR66dtNhQibjD6d6ruJkIktu_RpWJG', primary: true },
+        ],
+      },
+
+      {
+        id: 'bagels-of-war',
+        accent: 'crimson',
+        category: 'Student Project',
+        title: 'Bagels of War',
+        image: 'assets/img/modal_headers/bagels.png',               // e.g. 'assets/img/portfolio/bagels.jpg'
+        desc: 'Tower defense strategy game developed over a year, leading a team of artists, sound designer, and composer. Nominated for the PGDA Talent Award 2024.',
+        tags: [
+          { label: 'Team Lead', cls: 'tag-red' },
+          { label: 'Game Design', cls: 'tag-amber' },
+          { label: 'Programming', cls: 'tag-amber' },
+        ],
+        date: '2023 - 2024',
+        overview: `
+      <p>Bagels of War is a tower defense strategy game I developed over roughly a year as my
+      main student project. After concepting I assembled a small team -- two artists, a sound
+      designer, and a composer -- and acted as both lead designer and programmer.</p>
+    `,
+        highlights: [
+          'Led a team of 5 from concept to release.',
+          'Designed all tower-defense mechanics, enemy waves, and progression curves.',
+          'Programmed the full game in Godot / GDScript.',
+          'Top 3 finish in Austria\'s national student game competition.',
+        ],
+        links: [
+          { label: 'Play on itch.io', href: 'https://shano19.itch.io/bagels-of-war', primary: true },
+        ],
+      },
+
+      {
+        id: 'game-jams',
+        accent: 'green',
+        category: 'Hobby',
+        title: 'Game Jams',
+        image: 'assets/img/modal_headers/village.png',               // e.g. 'assets/img/portfolio/bertleroyale.jpg'
+        desc: 'Over 16 game jams spanning VR, board games, motion capture games, party card games, and many genres of computer games.',
+        tags: [
+          { label: 'Teamwork', cls: 'tag-amber' },
+          { label: 'Rapid Prototyping', cls: 'tag-amber' },
+        ],
+        date: '2021 - Present',
+        award: null,
+        overview: `
+      <p>Over 16 game jams across multiple countries and formats -- digital, physical, VR,
+      cooperative, competitive. Jams are where I do my most experimental work: no polish
+      pressure, just creative problem-solving under time constraints.</p>
+    `,
+        highlights: [
+          '<strong>Bertle Royale</strong> -- physical party card game, 2nd place in Design, Fun, and Overall.',
+          '<strong>Snek.Game</strong> -- absurdist puzzle game (a la What the Golf). Unity.',
+          '<strong>Entomophobia</strong> -- VR mosquito-slapping game using hand-tracking. Unity.',
+          '<strong>Crab It</strong> -- AI Summer School (Malta), body-tracking game, 3rd place overall.',
+          '<strong>Why The Long Gun?</strong> -- roguelike where you attach guns together. Godot, team of 8.',
+        ],
+        links: [
+          { label: 'itch.io profile', href: 'https://shano19.itch.io/', primary: true },
+        ],
+      },
+
+      {
+        id: 'electric-alps',
+        featured: false,               // spans 2 columns on wide screens
+        accent: 'amber',
+        category: 'Game Design Internship',
+        title: 'Electric Alps',
+        image: 'assets/img/modal_headers/ea1.jpg',               // e.g. 'assets/img/portfolio/ea1.jpg'
+        desc: 'Designed the progression and reward systems, plus 12 tutorial levels that teach core mechanics of the game Electric Alps.',
+        tags: [
+          { label: 'Systems Design', cls: 'tag-green' },
+          { label: 'Level Design', cls: 'tag-green' },
+        ],
+        // --- Modal content ---
+        date: '2023',
+        award: null,
+        overview: `
+      <p>During my internship at Dirty Paws Studio I worked as a game designer on Electric Alps.
+      I joined the team mid-production and was responsible for two main areas: designing the
+      full <strong>progression and reward systems</strong> for the game, and creating blockout
+      layouts for the tutorial sequence.</p>
+      <p>Every decision had to be justified not just creatively, but in terms of scope and
+      the team's existing systems -- a valuable constraint that forced clear thinking.</p>
+    `,
+        highlights: [
+          'Designed the overall progression arc and reward loop for the entire game.',
+          'Created 12 tutorial level blockouts, each teaching one mechanic through space -- no text prompts.',
+          'Iterated through multiple design reviews with senior designers, integrating feedback each cycle.',
+        ],
+        links: [
+          { label: 'Dirty Paws Studio', href: 'https://www.dirtypaws.studio/', primary: true },
+          { label: 'About Electric Alps', href: 'https://www.dirtypaws.studio/electric-alps' },
+        ],
+      },
+
+      {
+        id: 'dungeon-dm',
+        accent: 'crimson',
+        category: 'Board Game Design',
+        title: 'Dungeon of the Mad DM',
+        image: 'assets/img/modal_headers/dotdms.jpg',               // e.g. 'assets/img/portfolio/dotdm.jpg'
+        desc: 'Party board game for 2-5 players where the dungeon master tries to kill the adventurers. 4 characters, 50+ action cards, 8 monsters, 16 dungeon rooms. Fallen players become ghosts who can still influence the game.',
+        tags: [
+          { label: 'Game Design', cls: 'tag-amber' },
+          { label: 'Tabletop', cls: 'tag-green' },
+        ],
+        date: '2022 - 2023',
+        award: null,
+        overview: `
+      <p>Dungeon of the Mad DM is a party game where the dungeon master's goal is to
+      <em>kill</em> the adventurers. Fallen players become ghosts who can still help allies.</p>
+      <p>Two physical prototypes were built and playtested. The game never made it to
+      publishing -- we underestimated the logistics -- but the design is solid and there's
+      ambition to pick it up again one day.</p>
+    `,
+        highlights: [
+          '4 playable characters, each with unique action cards.',
+          '50+ unique action cards total, 8 monsters, 8 treasures, 16 dungeon room tiles.',
+          'Two physical prototypes built and playtested with real groups.',
+        ],
+        links: [],
+      },
+
+      {
+        id: 'master-thesis',
+        accent: 'green',
+        category: 'Academic Research',
+        title: 'Master Thesis: Impact of P2W',
+        image: 'assets/img/modal_headers/thesishell.jpg',               // e.g. 'assets/img/portfolio/thesis.jpg'
+        desc: 'Scientific research into the impact of P2W microtransactions on player experience. Involved designing a game prototype, structuring a questionnaire study, and analysing the results.',
+        tags: [
+          { label: 'Game Studies', cls: 'tag-amber' },
+          { label: 'UX Research', cls: 'tag-green' },
+        ],
+        date: '2023 - 2024',
+        overview: `
+      <p>My master's thesis investigated the impact of pay-to-win microtransactions on player
+      experience. The research combined a literature review, a custom game prototype, and a
+      structured questionnaire study with real participants.</p>
+    `,
+        highlights: [
+          'Designed and built a game prototype to isolate P2W variables in a controlled context.',
+          'Structured a questionnaire measuring immersion, fairness perception, motivation, and frustration.',
+          'Graded 1 (Outstanding) in the Austrian 5-point grading system.',
+        ],
+        links: [],
+      },
+
+      {
+        id: 'c-compiler',
+        accent: 'amber',
+        category: 'Student project',
+        title: 'C Compiler',
+        image: 'assets/img/modal_headers/compiler.png',               // e.g. 'assets/img/portfolio/compiler.png'
+        desc: 'Compiles a meaningful subset of C to LLVM IR and MIPS assembly. Includes semantic error detection with source-location reporting and full AST visualisation. Written in Python.',
+        tags: [
+          { label: 'Python', cls: 'tag-green' },
+          { label: 'LLVM', cls: 'tag-mist' },
+          { label: 'MIPS', cls: 'tag-mist' },
+        ],
+        date: '2022',
+        award: null,
+        overview: `
+      <p>A compiler written in Python that takes a meaningful subset of C and outputs both
+      LLVM IR and MIPS assembly. Built from scratch as part of my Computer Science bachelor.</p>
+    `,
+        highlights: [
+          'Supports most C control flow: if/else, while, for, switch, functions, recursion.',
+          'Full semantic error detection with source line and column reporting.',
+          'Generates annotated Abstract Syntax Tree visualisations.',
+          'Dual-target output: LLVM IR and MIPS assembly.',
+        ],
+        links: [],
+      },
+
+      {
+        id: 'size--',
+        accent: 'green',
+        category: 'Student project',
+        title: 'Size-- (Compression Tool)',
+        image: 'assets/img/modal_headers/igmp.jpg',               // e.g. 'assets/img/portfolio/pal.jpg'
+        desc: 'Six grammar-based compression algorithms, a custom binary format (PAL), Huffman encoding, and a full CLI with visualisation tooling to compare algorithm performance. Written in C++.',
+        tags: [
+          { label: 'Algorithms', cls: 'tag-amber' },
+          { label: 'C++', cls: 'tag-green' },
+          { label: 'Huffman', cls: 'tag-mist' },
+          { label: 'CLI', cls: 'tag-mist' },
+        ],
+        date: '2021',
+        award: null,
+        overview: `
+      <p>A compression and decompression tool implementing six grammar-based algorithms.
+      Input is converted to context-free grammars stored in a custom binary format (PAL),
+      then further compressed with Huffman encoding. Built with two friends.</p>
+    `,
+        highlights: [
+          '6 compression algorithms implemented from scratch.',
+          'Custom binary storage format (PAL) designed by the team.',
+          'Huffman encoding as a final compression stage.',
+          'Full CLI + visualisation tools for benchmarking algorithm performance.',
+        ],
+        links: [],
+      },
+
+      {
+        id: 'graphics-engine',
+        accent: 'crimson',
+        category: 'Student Project',
+        title: '3D Graphics Engine',
+        image: 'assets/img/modal_headers/cg.jpg',               // e.g. 'assets/img/portfolio/cg.jpg'
+        desc: 'A graphics engine built from scratch in C++ that renders 3D meshes with textures, lighting, and shadows.',
+        tags: [
+          { label: '3D Rendering', cls: 'tag-amber' },
+          { label: 'C++', cls: 'tag-green' },
+          { label: 'Linear Algebra', cls: 'tag-mist' },
+        ],
+        date: '2021',
+        award: null,
+        overview: `
+      <p>A 3D graphics engine written in C++ from absolute first principles -- built as the
+      Computer Graphics coursework during my bachelor. Every rendering stage was implemented
+      by hand to understand the underlying mathematics.</p>
+    `,
+        highlights: [
+          'Built up from 2D line rasterisation through full 3D projection.',
+          'Texture mapping with UV coordinates.',
+          'Phong lighting model (ambient, diffuse, specular).',
+          'Shadow mapping for dynamic cast shadows.',
+        ],
+        links: [],
+      },
+
+      {
+        id: 'japanese',
+        accent: 'amber',
+        category: 'Hobby',
+        title: 'Japanese',
+        image: 'assets/img/modal_headers/jp.jpg',               // e.g. 'assets/img/portfolio/jp.jpg'
+        desc: '3+ years of daily self-study + a semester studying in Tokyo and a JPT score of 660/990, approximately N2/B2 level.',
+        tags: [
+          { label: 'Japanese', cls: 'tag-amber' },
+          { label: 'Self-Study', cls: 'tag-mist' },
+        ],
+        date: '2020 - Present',
+        award: null,
+        overview: `
+      <p>I started self-studying Japanese during the COVID pandemic with one goal: to read
+       by Nahoko Uehashi. Three-plus years of daily study and a semester in Tokyo
+      later -- I can confirm it was worth it.</p>
+    `,
+        highlights: [
+          '3+ years of daily self-study, no formal instruction.',
+          'Scored 660/990 on the JPT -- approximately JLPT N2 / B2 level.',
+          'Semester abroad at a Japanese university in Tokyo.',
+        ],
+        links: [],
+      },
+    ];
+
+    /* ============================================================
+       RENDERING -- no need to edit below this line
+       ============================================================ */
+
+    // -- SVG icons ------------------------------------------------
+    const ICON_IMAGE = `<svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 4"/><circle cx="8" cy="14" r="1.5"/></svg>`;
+    const ICON_ARROW = `<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
+    const ICON_BACK = `<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>`;
+    const ICON_EXT = `<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>`;
+
+    function imgOrPlaceholder(src, alt, cls = '') {
+      if (src) return `<img src="${src}" alt="${alt}" class="${cls}">`;
+      return `<div class="img-placeholder">${ICON_IMAGE}<span>Add image path in main.js</span></div>`;
+    }
+
+    function renderTags(tags) {
+      return tags.map(t => `<span class="tag ${t.cls}">${t.label}</span>`).join('');
+    }
+
+    // -- Cards -----------------------------------------------------
+    function renderCards() {
+      const grid = document.getElementById('projects-grid');
+      if (!grid) return;
+
+      grid.innerHTML = PROJECTS.map(p => `
+    <article class="project-card ${p.featured ? 'featured' : ''} reveal" data-id="${p.id}">
+      ${p.featured ? '<div class="corner-tl"></div><div class="corner-br"></div>' : ''}
+      <div class="card-image">
+        ${imgOrPlaceholder(p.image, p.title)}
+        <div class="card-image-overlay"></div>
+      </div>
+      <div class="card-accent ${p.accent}"></div>
+      <div class="card-body">
+        <p class="card-category">${p.category}</p>
+        <h3 class="card-title">${p.title}</h3>
+        <p class="card-desc">${p.desc}</p>
+        <div class="card-tags">${renderTags(p.tags)}</div>
+        ${p.award ? `<div class="card-award">${p.award}</div>` : ''}
+      </div>
+
+    </article>
+  `).join('');
+      // MORE INFO BUTTON, add back above the /div
+      // <div class="card-footer">
+      //   <button class="btn-more" data-id="${p.id}">More Info ${ICON_ARROW}</button>
+      // </div>
+      // Delegate click to all "More Info" buttons
+      grid.addEventListener('click', e => {
+        const btn = e.target.closest('.btn-more');
+        if (btn) openModal(btn.dataset.id);
+      });
+    }
+
+    // -- Modal -----------------------------------------------------
+    function renderModal(id) {
+      const p = document.querySelector ? PROJECTS.find(x => x.id === id) : null;
+      if (!p) return;
+      const modal = document.getElementById('modal');
+
+      const bulletsHTML = p.highlights?.length
+        ? `<div class="modal-section">
+         <div class="modal-section-title">Highlights</div>
+         <ul class="modal-bullets">
+           ${p.highlights.map(h => `<li>${h}</li>`).join('')}
+         </ul>
+       </div>`
+        : '';
+
+      const externalLinks = (p.links || []).map(l =>
+        `<a href="${l.href}" target="_blank" rel="noopener" class="modal-link ${l.primary ? 'primary' : ''}">${l.label} ${ICON_EXT}</a>`
+      ).join('');
+
+      modal.innerHTML = `
+    <div class="modal-top-bar"></div>
+    <button class="modal-close" id="modal-close">&#x2715;</button>
+    <div class="modal-hero-img">
+      ${imgOrPlaceholder(p.image, p.title)}
+      <div class="modal-img-overlay"></div>
     </div>
-    <!-- The Salt Mines-->
-    <div class="portfolio-modal modal fade" id="portfolioModalSaltMines" tabindex="-1"
-        aria-labelledby="portfolioModalTrashCan" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">The Salt Mines
-                                </h2>
-                                <br>
-                                <p class="mb-4 text-justify-center">What I consider my best level. It was my attempt at
-                                    pushing the genre
-                                    and
-                                    engine itself to its limits. It uses some mechanism to change up the level between
-                                    player deaths, which is usually thought off to be impossible.
-                                    This gives a whole new set of expectations to subvert. The level took over 150 hours
-                                    to make, and another 50 of playtesting and revising. It takes around one hour to
-                                    complete.
-                                </p>
-                                <p class="mb-4">Youtuber おかりん/OkarinGames's playthrough of the level </p>
-                                <iframe class="rounded mb-5" width="720" height="405"
-                                    src="https://youtube.com/embed/XapkRmTC1gk"></iframe>
-                                <p class="mb-4">Youtuber CarlSagan42's playthrough of the level </p>
-                                <iframe class="rounded mb-5" width="720" height="405"
-                                    src="https://youtube.com/embed/yeEz8G0OYCo"></iframe>
-                                <p class="mb-4">Youtuber FerFigers's playthrough of the level </p>
-                                <iframe class="rounded mb-5" width="720" height="405"
-                                    src="https://youtube.com/embed/CmHtTiSdj3w"></iframe>
-                                <p class="mb-4">Youtuber DR.SHOKI's playthrough of the level </p>
-                                <iframe class="rounded mb-5" width="720" height="405"
-                                    src="https://youtube.com/embed/-WNqN3HVKKc"></iframe>
-                                <p class="mb-4">Youtuber しゅうゲームズ's playthrough of the level </p>
-                                <iframe class="rounded mb-5" width="720" height="405"
-                                    src="https://youtube.com/embed/UB1eqFNOoYE"></iframe>
-                                <p class="mb-4">Youtuber RYOTA☆レコード's playthrough of the level </p>
-                                <iframe class="rounded mb-5" width="720" height="405"
-                                    src="https://youtube.com/embed/RSYXYg-tFWg"></iframe>
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-xmark fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="modal-content">
+      <div class="modal-meta">
+        <span class="modal-category">${p.category}</span>
+        ${p.date ? `<span class="modal-date">${p.date}</span>` : ''}
+      </div>
+      <h2 class="modal-title">${p.title}</h2>
+      <div class="modal-rule"></div>
+      ${p.award ? `<div class="card-award" style="margin-bottom:1.2rem">${p.award}</div>` : ''}
+      <div class="modal-tags">${renderTags(p.tags)}</div>
+      <div class="modal-section">
+        <div class="modal-section-title">Overview</div>
+        <div class="modal-text">${p.overview}</div>
+      </div>
+      ${bulletsHTML}
+      <div class="modal-links">
+        <a href="projects/${p.id}.html" class="modal-link primary">Full Project Page ${ICON_ARROW}</a>
+        ${externalLinks}
+      </div>
     </div>
-    <!-- More on troll levels-->
-    <div class="portfolio-modal modal fade" id="portfolioModalMoreTrolls" tabindex="-1"
-        aria-labelledby="portfolioModalMoreTrolls" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase text-center mb-0">More
-                                    levels
-                                    and
-                                    info</h2>
-                                <br>
-                                <h3 class="text-center text-uppercase text-decoration-underline text-black mb-0">About
-                                    troll
-                                    levels</h3>
-                                <br>
-                                <p class="mb-4 text-justify-center">Many troll levels, including mine use glitches to
-                                    help
-                                    subverting
-                                    expectations, and as Nintendo is not a fan of these, troll levels usually get
-                                    deleted,
-                                    hence only the only thing remaining is videos. </p>
-                                <a target="_blank"
-                                    href="https://www.youtube.com/playlist?list=PL5RGR66dtNhQibjD6d6ruJkIktu_RpWJG">Youtube
-                                    playlist containing videos of people playing levels I made.</a></p>
-                                <h3 class="text-center text-uppercase text-black text-decoration-underline mb-0">More
-                                    information</h3>
-                                <br>
-                                <p class="mb-4 text-center">Video essay about troll level design</p>
-                                <iframe class="rounded mb-5" width="720" height="405"
-                                    src="https://youtube.com/embed/18WvuBg91gk"></iframe>
-                                <br>
-                                <p class="mb-4"><a target="_blank"
-                                        href="https://medium.com/@KevinHainline/super-mario-maker-and-the-devious-joy-of-the-troll-level-fdb1894aa7e1">
-                                        Article from Medium about troll levels</a></p>
-                                <p class="mb-4"><a target="_blank"
-                                        href="https://egmnow.com/these-super-mario-maker-level-designers-have-elevated-trolling-into-an-artform/">
-                                        Article from EGMnow about troll levels</a></p>
-                                <p class="mb-4"><a target="_blank"
-                                        href="https://docs.google.com/document/d/13ZoqeblLs45HuEfTtsOrq6X0LAuEnA8nB721_doxE38">
-                                        <i>Trolling for Dummies</i>; an 80 page document on how to create proper troll
-                                        levels, written by Defender1031</a></p>
-                                <p class="mb-4"><a target="_blank" href="https://makerteams.net/curatedtrolls/">
-                                        <i>Curated Trolls</i>; a community-driven site keeping track of released
-                                        levels</a></p>
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-xmark fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- BAGELS -->
-    <div class="portfolio-modal modal fade" id="BagelModal" tabindex="-1" aria-labelledby="portfolioModalMarioMaker"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Bagels Of War
-                                </h2>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
-                    <iframe
-                        src="https://docs.google.com/presentation/d/e/2PACX-1vR8MtcvZQkiVPAWSnx8rbKolhM8Ar9l1bCQjtgh-oUqKFF2L467h_mLSKwnNZ3BN0pCX45ZLzZTNjcs/embed?start=false&loop=false&delayms=60000"
-                        frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true"
-                        webkitallowfullscreen="true"></iframe>
-                    <br>
-                    <br>
+  `;
 
-                    <p class="mb-4 text-justify-center summary" style=""> Bagels of War is a strategy game I developed
-                        over the course of a year. The goal of this project was to develop a small, but high-quality
-                        game from start to finish, going and learning about all the different steps along the way. I
-                        also formed a small team after the concepting phase, consisting out of two artists, a sound
-                        designer and a composer. The game made it to the top three in the <a
-                            href="https://pgda.at/talent-award-2024/" target="_blank">PGDA Talent Award 2024</a>, a
-                        yearly national game competition in Austria for best student projects.</p>
+      document.getElementById('modal-close').onclick = closeModal;
+    }
 
-                    <div class="container">
+    function openModal(id) {
+      renderModal(id);
+      const backdrop = document.getElementById('modal-backdrop');
+      backdrop.classList.add('open');
+      document.body.classList.add('modal-open');
+      backdrop.scrollTop = 0;
+    }
 
-                        <br>
-                        <a target="_blank" href="https://shano19.itch.io/bagels-of-war">
-                            <button class="btn btn-primary" style="text-align: center ">
-                                <i class="fas fa fa-info-circle fa-fw"></i>
-                                Download the game on itch.io!
-                            </button>
-                        </a>
-                    </div>
-                    <br>
-                    <button class="btn btn-primary" data-bs-dismiss="modal">
-                        <i class="fas fa-xmark fa-fw"></i>
-                        Close Window
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Firelight -->
-    <div class="portfolio-modal modal fade" id="FirelightModal" tabindex="-1" aria-labelledby="portfolioModalMarioMaker"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">The Firelight
-                                </h2>
-                                <br>
-                            </div>
-                        </div>
-                    </div>
-                    <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vQYyzW6cBQ0zg3BWd4DIPG5vtsnznmN3Us-MfMbAA2p20NLTxBih4L5qKwLTiaTXXD-RXySZeRPBNwT/pubembed?start=true&loop=true&delayms=60000" frameborder="0" width="960" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
-                    <br>
-                    <p class="mb-4 text-justify-center summary" style=""> The Firelight is a 2D top-down cooperative
-                        horror adventure that aims to bring players closer together through an intense story- driven
-                        cosmic horror experience that tests their trust, communication, and ability to navigate an
-                        unraveling reality. The players take on the role of two children stranded on the fictive Firefly
-                        Island, a West European medieval village swallowed by darkness where all light has mysteriously
-                        vanished, except for the eerie glow of fireflies that seem to whisper secrets of something far
-                        more sinister. The game blends cooperative problem-solving, bread crumb style storytelling,
-                        atmospheric exploration, and tense encounters to deliver a thrilling test of teamwork against
-                        the unknown.</p>
-                    <p class="mb-4 text-justify-center summary" style=""> I am working on it as project manager, game
-                        designer and programmer. The game is currently working towards a vertical slice, and is set to
-                        launch on Steam Q2 2027</p>
-                    <br>
-                    
-                    <button class="btn btn-primary" data-bs-dismiss="modal">
-                        <i class="fas fa-xmark fa-fw"></i>
-                        Close Window
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- gamejam games-->
-    <div class="portfolio-modal modal fade" id="portfolioModalGameJams" tabindex="-1"
-        aria-labelledby="portfolioModalMarioMaker" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <h3 class="text-center text-black text-uppercase mb-0">Snek.Game - Klagenfurt X Coventry Jam</h3>
-                    <p class="mb-4 text-justify-center summary" style="">A puzzle game where each level gets more
-                        ridicilous
-                        than the last (inspired by What The Golf), I programmed and did mechanic design. Made with
-                        Unity.
-                        <a target="_blank" href="https://shano19.itch.io/snek-game">Play the game on itch.io!</a>
-                    </p>
-                    <div class="scroll-container darkblue" style="scrollbar-width: auto;">
-                        <img src="assets/img/s0.jpg" alt="Oops" style="height:310px">
-                        <img src="assets/img/s1.jpg" alt="Oops" style="height:310px">
-                        <img src="assets/img/s3.jpg" alt="Oops" style="height:310px">
-                        <img src="assets/img/s4.jpg" alt="Oops" style="height:310px">
-                        <img src="assets/img/s2.jpg" alt="Oops" style="height:310px">
-                        <img src="assets/img/s6.jpg" alt="Oops" style="height:310px">
-                    </div>
-                    <p></p>
-                    <h3 class="text-center text-black text-uppercase mb-0">A Beesy Week - Sustainability Board Game Jam
-                    </h3>
-                    <p class="mb-4 text-justify-center summary" style="">A co-op boardgame designed for children, where
-                        players work together as bees to polinate as
-                        many flowers as possible before the end of the week. I did the game design. <a target="_blank"
-                            href="https://shano19.itch.io/a-beesy-week">View
-                            the game on itch.io!</a>
-                    </p>
-                    <div class="scroll-container yellow" style="scrollbar-width: auto;">
-                        <img src="assets/img/beesy1.jpg" alt="Oops" style="height:375px">
-                        <img src="assets/img/beesy2.jpg" alt="Oops" style="height:375px">
-                        <img src="assets/img/beesy3.jpg" alt="Oops" style="height:375px">
-                        <img src="assets/img/beesy4.jpg" alt="Oops" style="height:375px">
-                    </div>
-                    <p></p>
-                    <h3 class="text-center text-black text-uppercase mb-0">Crab it - AI & Games Jam</h3>
-                    <p class="mb-4 text-justify-center summary" style="">Created at the 6th International Summer School
-                        on Artificial Intelligence and Games in Malta, Crab It is a game where the player has to imitate
-                        a crab controlling a canon, using their body. During the summer school we got to learn about
-                        various AI technologies such as body movement tracking, which we applied in this game. The game
-                        was made in Unity and got third place.<a target="_blank"
-                            href="https://youtube.com/shorts/HhbRygrOSno"> View
-                            a gameplay video!</a>
-                    </p>
-                    <div class="scroll-container sea" style="scrollbar-width: auto;">
-                        <img src="assets/img/aijam0.png" alt="Oops" style="height:375px">
-                        <img src="assets/img/aijam1.png" alt="Oops" style="height:375px">
-                        <img src="assets/img/aijam3.png" alt="Oops" style="height:375px">
-                        <img src="assets/img/aijam4.png" alt="Oops" style="height:375px">
-                        <img src="assets/img/aijam3.jpg" alt="Oops" style="height:375px">
-                    </div>
-                    <p></p>
-                    <h3 class="text-center text-black text-uppercase mb-0">Entomophobia- The Park VR Jam 2024</h3>
-                    <p class="mb-4 text-justify-center summary" style="">Ever wished you could re-experience trying to
-                        sleep but being assaulted by buzzing mosquitos, in VR? No? Well… we made it anyway. Using
-                        hand-tracking technology, our team developed a VR game where the goal is to kill the mosquitos
-                        swarming your room by moving around and clapping your hands. The game was made in Unity.<a
-                            target="_blank" href="https://youtube.com/shorts/HhbRygrOSno"> View
-                            a gameplay video!</a>
-                    </p>
-                    <div class="scroll-container grey" style="scrollbar-width: auto;">
-                        <img src="assets/img/vrjam0.png" alt="Oops" style="height:375px">
-                        <img src="assets/img/vrjam2.jpg" alt="Oops" style="height:375px">
-                        <iframe style="height:375px" src="https://youtube.com/embed/52xBlmUjrZw"></iframe>
+    function closeModal() {
+      document.getElementById('modal-backdrop').classList.remove('open');
+      document.body.classList.remove('modal-open');
+    }
 
-                    </div>
-                    <p></p>
-                    <h3 class="text-center text-black text-uppercase mb-0">Bertle Royale- 6th Klagenfurt Winter Jam</h3>
-                    <p class="mb-4 text-justify-center summary" style="">Bertle Royale is a party card game where you
-                        want to be the last Bert standing, themed after the mascotte Gamebert. The game ended in second
-                        place for the Game Design, Fun, and Overall categories, and third place for Creativity. I
-                        designed the game and the various cards and their effects.<a target="_blank"
-                            href="https://prepe.itch.io/bertle-royale-the-card-game">View the
-                            game on itch.io!</a>
-                    </p>
-                    <div class="scroll-container red" style="scrollbar-width: auto;">
-                        <img src="assets/img/bert0.jpg" alt="Oops" style="height:310px">
-                        <img src="assets/img/bert1.jpg" alt="Oops" style="height:310px">
-                        <img src="assets/img/bert0.png" alt="Oops" style="height:310px">
-                        <img src="assets/img/bert1.png" alt="Oops" style="height:310px">
-                        <img src="assets/img/bert2.png" alt="Oops" style="height:310px">
-                        <img src="assets/img/bert3.png" alt="Oops" style="height:310px">
-                        <img src="assets/img/bert4.png" alt="Oops" style="height:310px">
-                        <img src="assets/img/bert5.png" alt="Oops" style="height:310px">
-                        <img src="assets/img/bert6.png" alt="Oops" style="height:310px">
-                        <img src="assets/img/bert7.png" alt="Oops" style="height:310px">
-                        <img src="assets/img/bert8.png" alt="Oops" style="height:310px">
-                        <img src="assets/img/bert9.png" alt="Oops" style="height:310px">
-                        <img src="assets/img/bert10.png" alt="Oops" style="height:310px">
+    // -- Backdrop / keyboard ---------------------------------------
+    document.getElementById('modal-backdrop').addEventListener('click', e => {
+      if (e.target === e.currentTarget) closeModal();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape') closeModal();
+    });
 
-                    </div>
-                    <p></p>
-                    <h3 class="text-center text-black text-uppercase mb-0">Why The Long Gun? - 3 Gnomes Game Jam 2024
-                    </h3>
-                    <p class="mb-4 text-justify-center summary" style="">A procedurally generated rogue-like where
-                        instead
-                        of switching guns when you find a new one, you just attach them to each other. I helped with
-                        programming and designing. Made
-                        with a team of 8 people, in Godot. <a target="_blank"
-                            href="https://twice-twice.itch.io/why-the-long-gun">Play the
-                            game on itch.io!</a>
-                    </p>
-                    <div class="scroll-container black" style="scrollbar-width: auto;">
-                        <img src="assets/img/gun6.jpg" alt="Oops" style="height:310px">
-                        <img src="assets/img/gun2.jpg" alt="Oops" style="height:310px">
-                        <img src="assets/img/gun1.jpg" alt="Oops" style="height:310px">
-                        <img src="assets/img/gun0.jpg" alt="Oops" style="height:310px">
-                        <img src="assets/img/gun4.jpg" alt="Oops" style="height:310px">
-                        <img src="assets/img/gun5.jpg" alt="Oops" style="height:310px">
-                    </div>
-                    <p></p>
-                    <button class="btn btn-primary" data-bs-dismiss="modal">
-                        <i class="fas fa-xmark fa-fw"></i>
-                        Close Window
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Troll levels-->
-    <div class="portfolio-modal modal fade" id="portfolioModalMarioMaker" tabindex="-1"
-        aria-labelledby="portfolioModalMarioMaker" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Super Mario Maker 2
-                                </h2>
-                                <br>
-                                <p class="mb-4 text-black text-justify-center">
-                                    A 2D platformer level editor in which I
-                                    have made many "troll" levels. Troll levels are a special type that try
-                                    to predict what the player will do and punishes them for it, in an
-                                    entertaining manner. Combining clever traps with a healthy dose of slapstick, troll
-                                    levels aim to constantly subvert the expectations of the player. They are
-                                    a happy
-                                    accident resulting from the simplistic complexity of the Mario Maker games, and over
-                                    the
-                                    past eight years, a large community has grown around them, of which I've had the
-                                    pleasure to be a part of. My levels have been played/seen over 14 million times.
-                                </p>
-                                <p class="mb-4 text-black text-justify-center"> Arguably the most crucial element of
-                                    designing such levels is iteration and playtesting, to make sure a
-                                    level's predictions
-                                    actually match what
-                                    players
-                                    do and to refine the cues the level gives the player so they don't get lost.</p>
+    // -- Falling leaves --------------------------------------------
+    function initLeaves() {
+      const canvas = document.getElementById('leaf-canvas');
+      const ctx = canvas.getContext('2d');
 
-                                <p class="mb-4 text-center">Here are the two
-                                    levels that I consider my best</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="container portfolio">
-                        <!-- Portfolio Grid Items-->
-                        <div class="row justify-content-center">
-                            <!-- Portfolio Item 2-->
-                            <div class="col-md-6 col-lg-4 mb-5">
-                                <div class="portfolio-item mx-auto" data-bs-toggle="modal"
-                                    data-bs-target="#portfolioModalSaltMines">
-                                    <div
-                                        class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                        <div class="portfolio-item-caption-content text-center text-white"><i
-                                                class="fas fa-plus fa-3x"></i>
-                                        </div>
-                                    </div>
-                                    <h1 class="masthead-heading text-center text-black text-uppercase mb-0">The Salt
-                                        <br>
-                                        Mines
-                                    </h1>
-                                    <img class="img-fluid" src="assets/img/portfolio/saltminesbig.jpg" alt="..." />
-                                </div>
-                            </div>
-                            <!-- Portfolio Item 1-->
-                            <div class="col-md-6 col-lg-4 mb-5">
-                                <div class="portfolio-item mx-auto" data-bs-toggle="modal"
-                                    data-bs-target="#portfolioModalTrashCan">
-                                    <div
-                                        class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                                        <div class="portfolio-item-caption-content text-center text-white"><i
-                                                class="fas fa-plus fa-3x"></i>
-                                        </div>
-                                    </div>
-                                    <h1 class="masthead-heading text-center text-black text-uppercase mb-0">Carls <br>
-                                        trash
-                                        can
-                                    </h1>
-                                    <img class="img-fluid" src="assets/img/portfolio/trashcanbig.jpg" alt="..." />
-                                </div>
-                            </div>
+      const resize = () => { canvas.width = innerWidth; canvas.height = innerHeight; };
+      resize();
+      window.addEventListener('resize', resize);
 
-                        </div>
-                    </div>
-                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#portfolioModalMoreTrolls">
-                        <i class="fas fa-info-circle fa-fw"></i>
-                        More info on troll levels + other levels I made
-                    </button>
-                    <br>
-                    <p></p>
-                    <button class="btn btn-primary" data-bs-dismiss="modal">
-                        <i class="fas fa-xmark fa-fw"></i>
-                        Close Window
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Personal Projects-->
-    <div class="portfolio-modal modal fade" id="portfolioModalDotMDM" tabindex="-1"
-        aria-labelledby="portfolioModalMarioMaker" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Dungeon of the mad DM -->
-                    <h3 class="text-center text-black text-uppercase mb-0">Dungeon of the Mad Dungeon Master</h3>
-                    <br>
-                    <div class="container">
-                        <div class="scroll-container white"
-                            style="width:50%; float: right; scrollbar-width: auto; scrollbar-color: #ff0000 #000000;">
-                            <img src="assets/img/d.png" alt="Oops" style="height:310px">
-                            <img src="assets/img/d1.png" alt="Oops" style="height:310px">
-                            <img src="assets/img/d2.png" alt="Oops" style="height:310px">
-                            <img src="assets/img/d3.png" alt="Oops" style="height:310px">
-                            <img src="assets/img/d4.png" alt="Oops" style="height:310px">
-                            <img src="assets/img/d5.png" alt="Oops" style="height:310px">
-                            <img src="assets/img/d7.png" alt="Oops" style="height:310px">
-                            <img src="assets/img/d8.png" alt="Oops" style="height:310px">
-                            <img src="assets/img/d9.png" alt="Oops" style="height:310px">
-                        </div>
-                        <p class="mb-4 text-justify-center summary" style="width:50%; float: left">In Dungeon of the Mad
-                            Dungeon Master, a party of
-                            adventurers is desperately trying to escape an ever changing dungeon. One player takes up
-                            the
-                            role as the dungeon master, while the rest play as adventurers. However, unlike Dungeons and
-                            Dragons, in this game the dungeon master's goal is to actually kill the players by creating
-                            the
-                            deadliest dungeon possible. Adventurers will face monsters, activate traps, obtain treasure
-                            and
-                            traverse different biomes. The fun doesn't stop when the players die, they turn into ghosts
-                            that
-                            can still help their allies from the other side.<br>
-                        </p>
+      const COLORS = ['#c45c1a', '#e09940', '#8b2635', '#6e1f2b', '#c8842a', '#b04020', '#d4602a', '#a03828', '#3d6b45'];
 
-                        <p class="mb-4 text-justify-center summary" style="width:50%; float: left">I together with a
-                            friend
-                            did the game design. We really liked the game as a team, but we heavily underestimated the
-                            logistics and work required to publish a boardgame, so the game never made it past two
-                            physical
-                            versions and some playtests. There is ambition to one day pick it up again. DotDM features 4
-                            playable characters with over 50 unique action cards, 8 monsters, 8 treasures and 16 dungeon
-                            rooms.</p>
-                    </div>
-                    <br style="clear: both">
+      class Leaf {
+        constructor() { this.reset(true); }
+        reset(init = false) {
+          this.x = Math.random() * canvas.width;
+          this.y = init ? Math.random() * canvas.height - canvas.height : -30;
+          this.size = 7 + Math.random() * 13;
+          this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+          this.alpha = 0.35 + Math.random() * 0.5;
+          this.vy = 0.6 + Math.random() * 1.1;
+          this.vx = (Math.random() - 0.5) * 0.7;
+          this.rot = Math.random() * Math.PI * 2;
+          this.rotV = (Math.random() - 0.5) * 0.04;
+          this.swayA = 0.3 + Math.random() * 0.5;
+          this.swayF = 0.007 + Math.random() * 0.006;
+          this.swayO = Math.random() * Math.PI * 2;
+          this.t = 0;
+          this.shape = Math.floor(Math.random() * 3);
+        }
+        update() {
+          this.t++;
+          this.y += this.vy;
+          this.x += this.vx + Math.sin(this.t * this.swayF + this.swayO) * this.swayA;
+          this.rot += this.rotV;
+          if (this.y > canvas.height + 30) this.reset();
+        }
+        draw() {
+          ctx.save();
+          ctx.translate(this.x, this.y);
+          ctx.rotate(this.rot);
+          ctx.globalAlpha = this.alpha;
+          ctx.fillStyle = this.color;
+          const s = this.size;
+          ctx.beginPath();
+          if (this.shape === 0) {
+            // maple-ish
+            ctx.moveTo(0, -s); ctx.bezierCurveTo(s * .4, -s * .8, s * .9, -s * .2, s * .7, s * .1);
+            ctx.bezierCurveTo(s * .4, s * .5, 0, s * .3, 0, s * .7); ctx.bezierCurveTo(0, s * .3, -s * .4, s * .5, -s * .7, s * .1);
+            ctx.bezierCurveTo(-s * .9, -s * .2, -s * .4, -s * .8, 0, -s);
+          } else if (this.shape === 1) {
+            ctx.ellipse(0, 0, s * .42, s * .68, 0, 0, Math.PI * 2);
+          } else {
+            ctx.moveTo(0, -s); ctx.bezierCurveTo(s * .5, -s * .3, s * .5, s * .3, 0, s);
+            ctx.bezierCurveTo(-s * .5, s * .3, -s * .5, -s * .3, 0, -s);
+          }
+          ctx.fill();
+          ctx.restore();
+        }
+      }
 
-                    <button class="btn btn-primary" data-bs-dismiss="modal">
-                        <i class="fas fa-xmark fa-fw"></i>
-                        Close Window
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--Bertle Royale-->
-    <div class="portfolio-modal modal fade" id="portfolioModalbertleroyale" tabindex="-1"
-        aria-labelledby="portfolioModalbertleroyale" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Bertle Royale: The
-                                    card
-                                    game
-                                </h2>
-                                <br>
-                                <p class="mb-4 text-justify-center">A physical party game made for the 6th winter
-                                    KluJam,
-                                    themed after Gamebert,
-                                    the mascot of the Game Studies and Engineering Masters program.
-                                    Bertle royale ended in second place for the Game Design, Fun and Overall categories,
-                                    and
-                                    third place for creativity. I designed the game and the various cards and their
-                                    effects.</p>
-                                <embed src="assets/files/bertleroyale.pdf" type="application/pdf" width="70%"
-                                    height="600px" />
-                                <p class="mb-4"><a target="_blank"
-                                        href="https://prepe.itch.io/bertle-royale-the-card-game">
-                                        Game rules are on the itch page</a></p>
-                                <!-- Portfolio Modal - Text-->
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-xmark fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Size-- -->
-    <div class="portfolio-modal modal fade" id="portfolioModalCompression" tabindex="-1"
-        aria-labelledby="portfolioModalCompression" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Size--
-                                </h2>
-                                <br>
-                                <p class="mb-4 text-justify-center">A tool made by me and two friends to compare
-                                    different
-                                    compression
-                                    algorithms. We implemented six
-                                    algorithms to convert data into context-free grammars, which are stored in a data
-                                    format we came up with, called
-                                    PAL. The data is then converted to binary strings using huffman encoding, to further
-                                    reduce file size.
-                                    The tool comes with a complete CLI, and tools to visualize and compare the
-                                    performance of the algorithms.
+      const leaves = Array.from({ length: 55 }, () => new Leaf());
+      const tick = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        leaves.forEach(l => { l.update(); l.draw(); });
+        requestAnimationFrame(tick);
+      };
+      tick();
+    }
 
-                                <p class="mb-4"> Comparisation of the algorithms on various input files:
-                                    <img class="img-fluid" src="assets/img/compressionresults0.jpg" alt="..." />
-                                <p><br></p>
-                                <img class="img-fluid" src="assets/img/compressionresults1.jpg" alt="..." />
-                                <p><br></p>
-                                <p class="mb-4"><a target="_blank" href="https://github.com/pals4life/size--">
-                                        Source code</a></p>
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-xmark fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Compiler-- -->
-    <div class="portfolio-modal modal fade" id="portfolioModalCompiler" tabindex="-1"
-        aria-labelledby="portfolioModalCompiler" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">C compiler
-                                </h2>
-                                <br>
-                                <p class="mb-4 text-justify-center">Software to compile C code to LLVM and/or to MIPS
-                                    Assembly. It is able
-                                    to compile most of the C functionality, including flow control and functions.
-                                    Furthermore, it also has semantic error detection, informing you of any semantic
-                                    erros found in your code and where. You can find the full list of what it does and
-                                    does not support on the Github page. </p>
-                                <p>Example: Compiling the Fibonacci algorithm</p>
-                                <p>
-                                    Input C code: <a href="assets/files/fibonacciRecursive.c"
-                                        target="_blank">fibonacciRecursive.c</a>
-                                    <br>Generated LLVM code: <a href="assets/files/fibonacciRecursive.ll"
-                                        target="_blank">fibonacciRecursive.ll</a>
-                                    <br>Generated MIPS assembly: <a href="assets/files/fibonacciRecursive.asm"
-                                        target="_blank">fibonacciRecursive.asm</a>
-                                    <br>Generated abstract syntax tree
-                                </p>
-                                <img class="img-fluid" src="assets/img/fibonacciRecursive.png" alt="..." />
-                                <p><br></p>
-                                <p class="mb-4"><a target="_blank"
-                                        href="https://github.com/manomarichal/project-compilers">
-                                        Source code</a></p>
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-xmark fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Graphics -- -->
-    <div class="portfolio-modal modal fade" id="portfolioModalGraphics" tabindex="-1"
-        aria-labelledby="portfolioModalGraphics" aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Graphics Engine
-                                </h2>
-                                <br>
-                                <p class="mb-4 text-justify-center">An assigment from the course Computer Graphics from
-                                    my
-                                    bachelor. The
-                                    goal was to program our own graphics engine in C++, capable of generating various
-                                    three
-                                    dimensional figures. I
-                                    learned about all the mathematics behind rendering in this project, from a single 2D
-                                    line to 3D meshes with textures, shadow and lighting.
-                                    Below are some of the figures it can generate.</p>
-                                <img class="img-fluid" src="assets/img/cg/wireframes.jpg" alt="..." />
-                                <img class="img-fluid" src="assets/img/cg/Zbuffering.jpg" alt="..." />
-                                <img class="img-fluid" src="assets/img/cg/lightinng.jpg" alt="..." />
-                                <p class="mb-4"><a target="_blank"
-                                        href="https://github.com/manomarichal/computer-graphics-engine">
-                                        Source code
-                                    </a></p>
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-xmark fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    // -- Scroll reveal ---------------------------------------------
+    function initReveal() {
+      const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+    }
 
-    <!-- Japanese -- -->
-    <div class="portfolio-modal modal fade" id="portfolioModalJP" tabindex="-1" aria-labelledby="portfolioModalGraphics"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">日本語
-                                </h2>
-                                <br>
-                                <p class="mb-4 text-justify-center">During the COVID pandemic, I had a lot of free time
-                                    because of online classes, so I decided to undertake the challenge of learning
-                                    Japanese because there was a Japanese book series「獣の奏者」I really wanted to read. I
-                                    liked it a lot, and have since then been self-studying the language daily for 3
-                                    years now (and I am finally able to read my books lol). I managed to obtain a score
-                                    of 660/990 on the Japanese profiency test a little of a year ago, which is around
-                                    N2/B2 level</p>
-                                <p class="mb-4 text-justify-center">
-                                    COVIDのパンデミック中、オンライン授業のおかげで自由な時間が多くて、日本語を学ぶという挑戦をすることにしました。なぜなら、どうしても読みたい日本の本シリーズ「獣の奏者」があったからです。とても気に入ったので、それ以来3年間、毎日独学で日本語を勉強し続けています。約1年前、「JPT」という日本語能力試験で660/990点を取得し、そのテストによるとN2相当です。
-                                </p>
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-xmark fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    // -- Boot ------------------------------------------------------
+    renderCards();
+    initReveal();
+    initLeaves();
 
-
-    <!-- Thesis -- -->
-    <div class="portfolio-modal modal fade" id="portfolioThesis" tabindex="-1" aria-labelledby="portfolioModalGraphics"
-        aria-hidden="true">
-        <div class="modal-dialog modal-xl">
-            <div class="modal-content">
-                <div class="modal-header border-0">
-                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-center pb-5">
-                    <div class="container">
-                        <div class="row justify-content-center">
-                            <div class="col-lg-8">
-                                <!-- Portfolio Modal - Title-->
-                                <h2 class="portfolio-modal-title text-secondary text-uppercase mb-0">Master Thesis
-                                </h2>
-                                <br>
-                                <p class="mb-4 text-justify-center">Scientific research on the impact of P2W
-                                    (pay-to-win) microtransactions on user experience in games, involving the design and
-                                    implementation of a video game prototype and questionnaire.</p>
-                                <p class="mb-4 text-justify-center">The thesis received a grade of 1 (Outstanding
-                                    performance with no or only minor errors) in the Austrian grading system.</p>
-
-                                <embed
-                                    src="assets/files/The_Impact_of_Pay_to_Win_Microtransactions_on_the_Game_Experience_of_Players-ManoMarichal.pdf"
-                                    type="application/pdf" width="100%" height="600px" />
-                                <br>
-                                <button class="btn btn-primary" data-bs-dismiss="modal">
-                                    <i class="fas fa-xmark fa-fw"></i>
-                                    Close Window
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <!-- * *                               SB Forms JS                               * *-->
-        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
-        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
-        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+  </script>
 </body>
 
 </html>
