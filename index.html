@@ -11,12 +11,6 @@
     href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap"
     rel="stylesheet">
   <style>
-    /* ============================================================
-   style.css -- Mano Marichal Portfolio
-   Autumn Fantasy Theme
-   ============================================================ */
-
-    /* -- VARIABLES ------------------------------------------------ */
     :root {
       --bg: #0d1a0e;
       --bg-panel: #16271a;
@@ -33,969 +27,246 @@
       --border: rgba(200, 132, 42, 0.25);
     }
 
-    /* -- RESET ---------------------------------------------------- */
-    *,
-    *::before,
-    *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--cream); font-family: 'Lora', Georgia, serif; overflow-x: hidden; }
+    body.modal-open { overflow: hidden; }
 
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      background: var(--bg);
-      color: var(--cream);
-      font-family: 'Lora', Georgia, serif;
-      overflow-x: hidden;
-    }
-
-    body.modal-open {
-      overflow: hidden;
-    }
-
-    /* -- BACKGROUND ----------------------------------------------- */
     .forest-bg {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
+      position: fixed; inset: 0; z-index: 0; pointer-events: none;
       background:
-        radial-gradient(ellipse 80% 60% at 50% 100%, rgba(30, 61, 34, .6) 0%, transparent 70%),
-        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(110, 31, 43, .15) 0%, transparent 60%),
+        radial-gradient(ellipse 80% 60% at 50% 100%, rgba(30,61,34,.6) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 20% 80%, rgba(110,31,43,.15) 0%, transparent 60%),
         linear-gradient(180deg, #0a1209 0%, #0d1a0e 40%, #111f12 100%);
     }
 
-    /* grain texture removed */
-    /* Leaf canvas -- above page (z:2), below modal (z:300) */
-    #leaf-canvas {
-      position: fixed;
-      inset: 0;
-      z-index: 1;
-      pointer-events: none;
-      width: 100%;
-      height: 100%;
-    }
+    #leaf-canvas { position: fixed; inset: 0; z-index: 1; pointer-events: none; width: 100%; height: 100%; }
 
-    /* -- NAV ------------------------------------------------------ */
     nav {
-      position: fixed;
-      inset: 0 0 auto 0;
-      z-index: 200;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: fixed; inset: 0 0 auto 0; z-index: 200;
+      display: flex; justify-content: space-between; align-items: center;
       padding: 1.2rem 3rem;
-      background: linear-gradient(rgba(10, 18, 9, .95), transparent);
+      background: linear-gradient(rgba(10,18,9,.95), transparent);
       backdrop-filter: blur(4px);
-      border-bottom: 1px solid rgba(200, 132, 42, .1);
+      border-bottom: 1px solid rgba(200,132,42,.1);
     }
+    .nav-brand { font-family: 'Cinzel Decorative', serif; font-size: 1rem; color: var(--amber); text-decoration: none; letter-spacing: .05em; }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a { font-family: 'Cinzel', serif; font-size: .78rem; letter-spacing: .12em; text-transform: uppercase; color: var(--mist); text-decoration: none; transition: color .3s; }
+    .nav-links a:hover { color: var(--amber); }
 
-    .nav-brand {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: 1rem;
-      color: var(--amber);
-      text-decoration: none;
-      letter-spacing: .05em;
-    }
+    section { position: relative; z-index: 2; padding: 6rem 2rem; }
+    .section-header { text-align: center; margin-bottom: 4rem; }
+    .section-label { font-family: 'Cinzel', serif; font-size: .72rem; letter-spacing: .3em; text-transform: uppercase; color: var(--gold); margin-bottom: .8rem; }
+    .section-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(1.6rem, 3.5vw, 2.6rem); color: var(--cream); text-shadow: 0 0 40px rgba(200,132,42,.2); }
+    .section-rule { width: 80px; height: 2px; margin: 1.2rem auto 0; background: linear-gradient(90deg, transparent, var(--bordeaux), var(--gold), var(--bordeaux), transparent); }
 
-    .nav-links {
-      display: flex;
-      gap: 2.5rem;
-      list-style: none;
-    }
+    /* HERO */
+    .hero { min-height: 100vh; position: relative; z-index: 2; display: flex; align-items: center; justify-content: center; padding: 8rem 4rem 5rem; }
+    .hero-inner { display: flex; align-items: center; gap: 5rem; max-width: 1000px; width: 100%; }
+    .hero-text { flex: 1; }
+    .hero-subtitle { font-family: 'Cinzel', serif; font-size: clamp(.7rem,1.3vw,.88rem); letter-spacing: .28em; text-transform: uppercase; color: var(--sage); margin-bottom: .9rem; animation: fadeUp 1s ease both; }
+    .hero-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(2rem,5vw,4rem); color: var(--cream); line-height: 1.1; text-shadow: 0 0 80px rgba(200,132,42,.3),0 2px 4px rgba(0,0,0,.8); animation: fadeUp 1s .1s ease both; }
+    .hero-title span { color: var(--amber); }
+    .hero-divider { width: 100px; height: 1px; margin: 1.6rem 0; background: linear-gradient(90deg, var(--gold), transparent); animation: fadeUp 1s .2s ease both; }
+    .hero-bio { font-size: .98rem; line-height: 1.88; max-width: 560px; color: rgba(240,230,200,.72); animation: fadeUp 1s .3s ease both; }
+    .hero-bio+.hero-bio { margin-top: .9rem; animation-delay: .4s; }
+    .scroll-hint { margin-top: 2.8rem; display: flex; flex-direction: column; align-items: flex-start; gap: .6rem; animation: fadeUp 1s .7s ease both; }
+    .scroll-hint span { font-family: 'Cinzel', serif; font-size: .65rem; letter-spacing: .2em; text-transform: uppercase; color: var(--sage); }
+    .scroll-arrow { width: 1px; height: 38px; background: linear-gradient(var(--gold), transparent); animation: scrollPulse 2.2s ease-in-out infinite; }
 
-    .nav-links a {
-      font-family: 'Cinzel', serif;
-      font-size: .78rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--mist);
-      text-decoration: none;
-      transition: color .3s;
-    }
+    .hero-photo-wrap { flex-shrink: 0; position: relative; width: 300px; height: 300px; animation: fadeUp 1s .2s ease both; }
+    .hero-photo-wrap::before { content: ''; position: absolute; inset: -4px; border-radius: 50%; background: conic-gradient(var(--bordeaux), var(--rust), var(--gold), var(--amber), var(--rust), var(--bordeaux)); animation: rotateBorder 10s linear infinite; }
+    .hero-photo-wrap::after { content: ''; position: absolute; inset: -1px; border-radius: 50%; background: var(--bg); }
+    .hero-photo { position: relative; z-index: 1; width: 300px; height: 300px; border-radius: 50%; overflow: hidden; background: linear-gradient(135deg, var(--green-dark), var(--bg-panel)); display: flex; align-items: center; justify-content: center; }
+    .hero-photo img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
-    .nav-links a:hover {
-      color: var(--amber);
-    }
+    /* PROJECT GRID */
+    #projects { padding-top: 4rem; }
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 1.8rem; max-width: 1200px; margin: 0 auto; }
 
-    /* -- SHARED SECTION STYLES ------------------------------------ */
-    section {
-      position: relative;
-      z-index: 2;
-      padding: 6rem 2rem;
-    }
+    /* PROJECT CARD */
+    .project-card { background: linear-gradient(145deg, rgba(22,39,26,.95), rgba(13,26,14,.98)); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; position: relative; display: flex; flex-direction: column; transition: transform .4s, box-shadow .4s, border-color .4s; }
+    .project-card:hover { transform: translateY(-6px); box-shadow: 0 20px 60px rgba(0,0,0,.6),0 0 40px rgba(200,132,42,.1); border-color: rgba(200,132,42,.5); }
+    .corner-tl, .corner-br { position: absolute; width: 20px; height: 20px; border-color: rgba(200,132,42,.4); border-style: solid; z-index: 2; pointer-events: none; }
+    .corner-tl { top: 10px; left: 10px; border-width: 1px 0 0 1px; }
+    .corner-br { bottom: 10px; right: 10px; border-width: 0 1px 1px 0; }
+    .project-card.featured { grid-column: span 2; }
 
-    .section-header {
-      text-align: center;
-      margin-bottom: 4rem;
-    }
+    .card-image { width: 100%; height: 185px; overflow: hidden; position: relative; flex-shrink: 0; background: linear-gradient(135deg, var(--green-dark), var(--bg-panel)); }
+    .card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; display: block; }
+    .project-card:hover .card-image img { transform: scale(1.05); }
+    .card-image-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 60px; background: linear-gradient(transparent, rgba(13,26,14,.85)); pointer-events: none; }
+    .img-placeholder { width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: .5rem; color: rgba(184,201,160,.28); font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: .15em; text-transform: uppercase; }
+    .img-placeholder svg { opacity: .25; }
 
-    .section-label {
-      font-family: 'Cinzel', serif;
-      font-size: .72rem;
-      letter-spacing: .3em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: .8rem;
-    }
+    .card-accent { height: 3px; }
+    .card-accent.amber { background: linear-gradient(90deg, var(--rust), var(--gold), var(--amber)); }
+    .card-accent.green { background: linear-gradient(90deg, var(--green-dark), var(--green-mid), var(--sage)); }
+    .card-accent.crimson { background: linear-gradient(90deg, var(--bordeaux), var(--crimson), var(--rust)); }
 
-    .section-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-      color: var(--cream);
-      text-shadow: 0 0 40px rgba(200, 132, 42, .2);
-    }
+    .card-body { padding: 1.4rem 1.8rem 1rem; flex: 1; display: flex; flex-direction: column; }
+    .card-category { font-family: 'Cinzel', serif; font-size: .62rem; letter-spacing: .25em; text-transform: uppercase; color: var(--sage); margin-bottom: .5rem; }
+    .card-title { font-family: 'Cinzel', serif; font-size: 1.15rem; font-weight: 600; color: var(--cream); margin-bottom: .8rem; line-height: 1.3; }
+    .card-desc { font-size: .875rem; line-height: 1.75; color: rgba(240,230,200,.62); margin-bottom: 1.1rem; flex: 1; }
+    .card-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
 
-    .section-rule {
-      width: 80px;
-      height: 2px;
-      margin: 1.2rem auto 0;
-      background: linear-gradient(90deg, transparent, var(--bordeaux), var(--gold), var(--bordeaux), transparent);
-    }
+    .tag { font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; padding: .25rem .65rem; border-radius: 2px; border: 1px solid; transition: all .25s; cursor: default; }
+    .tag-amber { color: var(--amber); border-color: rgba(200,132,42,.4); background: rgba(200,132,42,.08); }
+    .tag-green { color: var(--mist); border-color: rgba(74,124,82,.5); background: rgba(74,124,82,.1); }
+    .tag-red { color: #d4707a; border-color: rgba(110,31,43,.6); background: rgba(110,31,43,.15); }
+    .tag-mist { color: rgba(184,201,160,.7); border-color: rgba(184,201,160,.2); background: rgba(184,201,160,.05); }
+    .tag-amber:hover { background: rgba(200,132,42,.2); }
+    .tag-green:hover { background: rgba(74,124,82,.25); border-color: var(--sage); }
+    .tag-red:hover { background: rgba(110,31,43,.3); }
 
-    /* -- HERO ----------------------------------------------------- */
-    .hero {
-      min-height: 100vh;
-      position: relative;
-      z-index: 2;
-      display: flex;
+    .card-award { display: inline-flex; align-items: center; gap: .4rem; margin-top: .8rem; font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: .1em; color: var(--amber); background: rgba(200,132,42,.1); border: 1px solid rgba(200,132,42,.28); padding: .25rem .7rem; border-radius: 2px; }
+
+
+    .platform-badge {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      padding: 8rem 4rem 5rem;
-    }
-
-    .hero-inner {
-      display: flex;
-      align-items: center;
-      gap: 5rem;
-      max-width: 1000px;
-      width: 100%;
-    }
-
-    .hero-text {
-      flex: 1;
-    }
-
-    .hero-subtitle {
+      gap: .35rem;
       font-family: 'Cinzel', serif;
-      font-size: clamp(.7rem, 1.3vw, .88rem);
-      letter-spacing: .28em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: .9rem;
-      animation: fadeUp 1s ease both;
-    }
-
-    .hero-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(2rem, 5vw, 4rem);
-      color: var(--cream);
-      line-height: 1.1;
-      text-shadow: 0 0 80px rgba(200, 132, 42, .3), 0 2px 4px rgba(0, 0, 0, .8);
-      animation: fadeUp 1s .1s ease both;
-    }
-
-    .hero-title span {
-      color: var(--amber);
-    }
-
-    .hero-divider {
-      width: 100px;
-      height: 1px;
-      margin: 1.6rem 0;
-      background: linear-gradient(90deg, var(--gold), transparent);
-      animation: fadeUp 1s .2s ease both;
-    }
-
-    .hero-bio {
-      font-size: .98rem;
-      line-height: 1.88;
-      max-width: 560px;
-      color: rgba(240, 230, 200, .72);
-      animation: fadeUp 1s .3s ease both;
-    }
-
-    .hero-bio+.hero-bio {
-      margin-top: .9rem;
-      animation-delay: .4s;
-    }
-
-    .scroll-hint {
-      margin-top: 2.8rem;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: .6rem;
-      animation: fadeUp 1s .7s ease both;
-    }
-
-    .scroll-hint span {
-      font-family: 'Cinzel', serif;
-      font-size: .65rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--sage);
-    }
-
-    .scroll-arrow {
-      width: 1px;
-      height: 38px;
-      background: linear-gradient(var(--gold), transparent);
-      animation: scrollPulse 2.2s ease-in-out infinite;
-    }
-
-    /* Profile photo */
-    .hero-photo-wrap {
-      flex-shrink: 0;
-      position: relative;
-      width: 300px;
-      height: 300px;
-      animation: fadeUp 1s .2s ease both;
-    }
-
-    .hero-photo-wrap::before {
-      /* spinning gradient ring */
-      content: '';
-      position: absolute;
-      inset: -4px;
-      border-radius: 50%;
-      background: conic-gradient(var(--bordeaux), var(--rust), var(--gold), var(--amber), var(--rust), var(--bordeaux));
-      animation: rotateBorder 10s linear infinite;
-    }
-
-    .hero-photo-wrap::after {
-      /* gap between ring and photo */
-      content: '';
-      position: absolute;
-      inset: -1px;
-      border-radius: 50%;
-      background: var(--bg);
-    }
-
-    .hero-photo {
-      position: relative;
-      z-index: 1;
-      width: 300px;
-      height: 300px;
-      border-radius: 50%;
-      overflow: hidden;
-      background: linear-gradient(135deg, var(--green-dark), var(--bg-panel));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .hero-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 50%;
-    }
-
-    .photo-placeholder {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: .5rem;
-      color: var(--sage);
-      text-align: center;
-      padding: 1rem;
-      font-family: 'Cinzel', serif;
-      font-size: .56rem;
+      font-size: .58rem;
       letter-spacing: .1em;
       text-transform: uppercase;
-    }
-
-    .photo-placeholder svg {
-      opacity: .45;
-    }
-
-    /* -- PROJECT GRID --------------------------------------------- */
-    #projects {
-      padding-top: 4rem;
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 1.8rem;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
-    /* -- PROJECT CARD --------------------------------------------- */
-    .project-card {
-      background: linear-gradient(145deg, rgba(22, 39, 26, .95), rgba(13, 26, 14, .98));
-      border: 1px solid var(--border);
-      border-radius: 4px;
-      overflow: hidden;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      transition: transform .4s, box-shadow .4s, border-color .4s;
-    }
-
-    .project-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 20px 60px rgba(0, 0, 0, .6), 0 0 40px rgba(200, 132, 42, .1);
-      border-color: rgba(200, 132, 42, .5);
-    }
-
-    /* Corner ornaments on featured card */
-    .corner-tl,
-    .corner-br {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      border-color: rgba(200, 132, 42, .4);
-      border-style: solid;
-      z-index: 2;
-      pointer-events: none;
-    }
-
-    .corner-tl {
-      top: 10px;
-      left: 10px;
-      border-width: 1px 0 0 1px;
-    }
-
-    .corner-br {
-      bottom: 10px;
-      right: 10px;
-      border-width: 0 1px 1px 0;
-    }
-
-    .project-card.featured {
-      grid-column: span 2;
-    }
-
-    /* Card image */
-    .card-image {
-      width: 100%;
-      height: 185px;
-      overflow: hidden;
-      position: relative;
-      flex-shrink: 0;
-      background: linear-gradient(135deg, var(--green-dark), var(--bg-panel));
-    }
-
-    .card-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform .5s;
-      display: block;
-    }
-
-    .project-card:hover .card-image img {
-      transform: scale(1.05);
-    }
-
-    .card-image-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      background: linear-gradient(transparent, rgba(13, 26, 14, .85));
-      pointer-events: none;
-    }
-
-    /* Placeholder for missing images */
-    .img-placeholder {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: .5rem;
-      color: rgba(184, 201, 160, .28);
-      font-family: 'Cinzel', serif;
-      font-size: .6rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-    }
-
-    .img-placeholder svg {
-      opacity: .25;
-    }
-
-    /* Accent bar */
-    .card-accent {
-      height: 3px;
-    }
-
-    .card-accent.amber {
-      background: linear-gradient(90deg, var(--rust), var(--gold), var(--amber));
-    }
-
-    .card-accent.green {
-      background: linear-gradient(90deg, var(--green-dark), var(--green-mid), var(--sage));
-    }
-
-    .card-accent.crimson {
-      background: linear-gradient(90deg, var(--bordeaux), var(--crimson), var(--rust));
-    }
-
-    /* Card body */
-    .card-body {
-      padding: 1.4rem 1.8rem 1rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .card-category {
-      font-family: 'Cinzel', serif;
-      font-size: .62rem;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      color: var(--sage);
-      margin-bottom: .5rem;
-    }
-
-    .card-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.15rem;
-      font-weight: 600;
-      color: var(--cream);
-      margin-bottom: .8rem;
-      line-height: 1.3;
-    }
-
-    .card-desc {
-      font-size: .875rem;
-      line-height: 1.75;
-      color: rgba(240, 230, 200, .62);
-      margin-bottom: 1.1rem;
-      flex: 1;
-    }
-
-    /* Tags */
-    .card-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .4rem;
-    }
-
-    .tag {
-      font-family: 'Cinzel', serif;
-      font-size: .6rem;
-      letter-spacing: .1em;
-      text-transform: uppercase;
-      padding: .25rem .65rem;
+      text-decoration: none;
+      padding: .28rem .7rem;
       border-radius: 2px;
       border: 1px solid;
       transition: all .25s;
-      cursor: default;
+      line-height: 1;
     }
 
-    .tag-amber {
-      color: var(--amber);
-      border-color: rgba(200, 132, 42, .4);
-      background: rgba(200, 132, 42, .08);
+    /* YouTube */
+    .platform-badge.youtube {
+      color: #e8574a;
+      border-color: rgba(232,87,74,.4);
+      background: rgba(232,87,74,.08);
+    }
+    .platform-badge.youtube:hover {
+      background: rgba(232,87,74,.2);
+      border-color: #e8574a;
+      color: #ff7b6e;
     }
 
-    .tag-green {
+    /* itch.io */
+    .platform-badge.itch {
+      color: #f47067;
+      border-color: rgba(244,112,103,.4);
+      background: rgba(244,112,103,.08);
+    }
+    .platform-badge.itch:hover {
+      background: rgba(244,112,103,.2);
+      border-color: #f47067;
+      color: #ff9088;
+    }
+
+    /* Steam */
+    .platform-badge.steam {
+      color: #8ab4d4;
+      border-color: rgba(138,180,212,.35);
+      background: rgba(138,180,212,.08);
+    }
+    .platform-badge.steam:hover {
+      background: rgba(138,180,212,.2);
+      border-color: #8ab4d4;
+      color: #b0ccdf;
+    }
+
+    /* GitHub */
+    .platform-badge.github {
       color: var(--mist);
-      border-color: rgba(74, 124, 82, .5);
-      background: rgba(74, 124, 82, .1);
+      border-color: rgba(184,201,160,.3);
+      background: rgba(184,201,160,.06);
+    }
+    .platform-badge.github:hover {
+      background: rgba(184,201,160,.15);
+      border-color: var(--mist);
     }
 
-    .tag-red {
-      color: #d4707a;
-      border-color: rgba(110, 31, 43, .6);
-      background: rgba(110, 31, 43, .15);
+    /* Generic / custom */
+    .platform-badge.link {
+      color: rgba(255, 255, 255, 0.35);
+      border-color: rgba(255, 255, 255, 0.35);
+      background: rgba(100, 100, 100, 0.08);
+    }
+    .platform-badge.link:hover {
+      background: rgba(67, 67, 67, 0.2);
+      border-color: rgba(255, 255, 255, 0.35);
     }
 
-    .tag-mist {
-      color: rgba(184, 201, 160, .7);
-      border-color: rgba(184, 201, 160, .2);
-      background: rgba(184, 201, 160, .05);
-    }
+    .platform-badge svg { flex-shrink: 0; }
 
-    .tag-amber:hover {
-      background: rgba(200, 132, 42, .2);
-    }
+    /* MODAL */
+    .modal-backdrop { position: fixed; inset: 0; z-index: 300; display: flex; align-items: flex-start; justify-content: center; padding: 2rem 1rem 4rem; overflow-y: auto; background: rgba(4,9,4,.9); backdrop-filter: blur(10px); opacity: 0; pointer-events: none; transition: opacity .35s; }
+    .modal-backdrop.open { opacity: 1; pointer-events: all; }
+    .modal { background: linear-gradient(160deg, #192a1b, #0f1e10); border: 1px solid rgba(200,132,42,.3); border-radius: 6px; width: 100%; max-width: 840px; position: relative; overflow: hidden; margin-top: 2rem; transform: translateY(40px) scale(.97); transition: transform .4s cubic-bezier(.22,1,.36,1); }
+    .modal-backdrop.open .modal { transform: none; }
+    .modal-top-bar { height: 4px; background: linear-gradient(90deg, var(--bordeaux), var(--rust), var(--gold), var(--amber)); }
+    .modal-close { position: absolute; top: 1rem; right: 1rem; z-index: 10; width: 36px; height: 36px; border-radius: 50%; background: rgba(13,26,14,.85); border: 1px solid rgba(200,132,42,.3); color: var(--mist); cursor: pointer; font-size: 1.1rem; display: flex; align-items: center; justify-content: center; transition: all .3s; }
+    .modal-close:hover { border-color: var(--amber); color: var(--amber); }
+    .modal-hero-img { width: 100%; height: 280px; overflow: hidden; position: relative; background: linear-gradient(135deg, var(--green-dark), var(--bg-panel)); }
+    .modal-hero-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .modal-hero-img .img-placeholder { height: 100%; }
+    .modal-img-overlay { position: absolute; bottom: 0; left: 0; right: 0; height: 140px; background: linear-gradient(transparent, #0f1e10); pointer-events: none; }
+    .modal-content { padding: 2rem 2.8rem 2.8rem; }
+    .modal-meta { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: .7rem; }
+    .modal-category { font-family: 'Cinzel', serif; font-size: .65rem; letter-spacing: .25em; text-transform: uppercase; color: var(--sage); }
+    .modal-date { font-family: 'Cinzel', serif; font-size: .6rem; letter-spacing: .15em; color: rgba(184,201,160,.38); }
+    .modal-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(1.4rem,3vw,2rem); color: var(--cream); margin-bottom: .5rem; }
+    .modal-rule { width: 60px; height: 2px; margin-bottom: 1.4rem; background: linear-gradient(90deg, var(--bordeaux), var(--gold)); }
+    .modal-tags { display: flex; flex-wrap: wrap; gap: .45rem; margin-bottom: 1.8rem; }
+    .modal-section { margin-bottom: 1.8rem; }
+    .modal-section-title { font-family: 'Cinzel', serif; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin-bottom: .8rem; display: flex; align-items: center; gap: .7rem; }
+    .modal-section-title::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(200,132,42,.3), transparent); }
+    .modal-text { font-size: .95rem; line-height: 1.9; color: rgba(240,230,200,.72); }
+    .modal-text p { margin-bottom: .9rem; }
+    .modal-text p:last-child { margin-bottom: 0; }
+    .modal-bullets { list-style: none; display: flex; flex-direction: column; gap: .6rem; }
+    .modal-bullets li { display: flex; gap: .9rem; align-items: flex-start; font-size: .92rem; line-height: 1.72; color: rgba(240,230,200,.7); }
+    .modal-bullets li::before { content: '*'; color: var(--rust); flex-shrink: 0; font-size: .6rem; margin-top: .28rem; }
 
-    .tag-green:hover {
-      background: rgba(74, 124, 82, .25);
-      border-color: var(--sage);
-    }
+    .modal-links { display: flex; flex-wrap: wrap; gap: .8rem; margin-top: 2rem; padding-top: 1.6rem; border-top: 1px solid rgba(200,132,42,.15); align-items: center; }
+    .modal-link { display: inline-flex; align-items: center; gap: .5rem; font-family: 'Cinzel', serif; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase; color: var(--cream); text-decoration: none; border: 1px solid rgba(200,132,42,.35); padding: .55rem 1.2rem; border-radius: 2px; background: rgba(200,132,42,.07); transition: all .3s; }
+    .modal-link:hover { background: rgba(200,132,42,.18); border-color: var(--amber); color: var(--amber); }
+    .modal-link.primary { background: rgba(200,132,42,.16); border-color: var(--gold); color: var(--amber); }
+    .modal-link.primary:hover { background: rgba(200,132,42,.3); }
+    .modal-link svg { transition: transform .3s; }
+    .modal-link:hover svg { transform: translateX(3px); }
 
-    .tag-red:hover {
-      background: rgba(110, 31, 43, .3);
-    }
 
-    /* Award badge */
-    .card-award {
-      display: inline-flex;
-      align-items: center;
-      gap: .4rem;
-      margin-top: .8rem;
-      font-family: 'Cinzel', serif;
-      font-size: .6rem;
-      letter-spacing: .1em;
-      color: var(--amber);
-      background: rgba(200, 132, 42, .1);
-      border: 1px solid rgba(200, 132, 42, .28);
-      padding: .25rem .7rem;
-      border-radius: 2px;
-    }
+    /* CONTACT */
+    .contact-inner { max-width: 600px; margin: 0 auto; text-align: center; }
+    .contact-note { font-size: .9rem; color: rgba(240,230,200,.5); margin-top: 1.2rem; line-height: 1.8; }
+    .contact-email { display: inline-block; margin-top: 1.8rem; font-family: 'Cinzel', serif; font-size: 1.1rem; color: var(--amber); text-decoration: none; border-bottom: 1px solid rgba(200,132,42,.3); padding-bottom: .2rem; transition: color .3s, border-color .3s; }
+    .contact-email:hover { color: var(--cream); border-color: var(--cream); }
 
-    /* Card footer */
-    .card-footer {
-      padding: .9rem 1.8rem 1.4rem;
-      border-top: 1px solid rgba(200, 132, 42, .1);
-    }
+    footer { position: relative; z-index: 2; text-align: center; padding: 2rem; border-top: 1px solid rgba(200,132,42,.1); font-family: 'Cinzel', serif; font-size: .68rem; letter-spacing: .15em; text-transform: uppercase; color: rgba(184,201,160,.32); }
 
-    .btn-more {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      font-family: 'Cinzel', serif;
-      font-size: .68rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: var(--amber);
-      background: transparent;
-      border: 1px solid rgba(200, 132, 42, .35);
-      padding: .5rem 1.1rem;
-      border-radius: 2px;
-      cursor: pointer;
-      transition: all .3s;
-    }
+    .reveal { opacity: 0; transform: translateY(32px); transition: opacity .85s, transform .85s; }
+    .reveal.visible { opacity: 1; transform: none; }
 
-    .btn-more:hover {
-      background: rgba(200, 132, 42, .12);
-      border-color: var(--amber);
-      color: var(--cream);
-    }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+    @keyframes rotateBorder { to { transform: rotate(360deg); } }
+    @keyframes scrollPulse { 0%,100% { opacity: .4; transform: scaleY(.9); } 50% { opacity: 1; transform: scaleY(1.1); } }
 
-    .btn-more svg {
-      transition: transform .3s;
-    }
-
-    .btn-more:hover svg {
-      transform: translateX(3px);
-    }
-
-    /* -- MODAL ---------------------------------------------------- */
-    .modal-backdrop {
-      position: fixed;
-      inset: 0;
-      z-index: 300;
-      display: flex;
-      align-items: flex-start;
-      justify-content: center;
-      padding: 2rem 1rem 4rem;
-      overflow-y: auto;
-      background: rgba(4, 9, 4, .9);
-      backdrop-filter: blur(10px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity .35s;
-    }
-
-    .modal-backdrop.open {
-      opacity: 1;
-      pointer-events: all;
-    }
-
-    .modal {
-      background: linear-gradient(160deg, #192a1b, #0f1e10);
-      border: 1px solid rgba(200, 132, 42, .3);
-      border-radius: 6px;
-      width: 100%;
-      max-width: 840px;
-      position: relative;
-      overflow: hidden;
-      margin-top: 2rem;
-      transform: translateY(40px) scale(.97);
-      transition: transform .4s cubic-bezier(.22, 1, .36, 1);
-    }
-
-    .modal-backdrop.open .modal {
-      transform: none;
-    }
-
-    .modal-top-bar {
-      height: 4px;
-      background: linear-gradient(90deg, var(--bordeaux), var(--rust), var(--gold), var(--amber));
-    }
-
-    .modal-close {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      z-index: 10;
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
-      background: rgba(13, 26, 14, .85);
-      border: 1px solid rgba(200, 132, 42, .3);
-      color: var(--mist);
-      cursor: pointer;
-      font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all .3s;
-    }
-
-    .modal-close:hover {
-      border-color: var(--amber);
-      color: var(--amber);
-    }
-
-    .modal-hero-img {
-      width: 100%;
-      height: 280px;
-      overflow: hidden;
-      position: relative;
-      background: linear-gradient(135deg, var(--green-dark), var(--bg-panel));
-    }
-
-    .modal-hero-img img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .modal-hero-img .img-placeholder {
-      height: 100%;
-    }
-
-    .modal-img-overlay {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 140px;
-      background: linear-gradient(transparent, #0f1e10);
-      pointer-events: none;
-    }
-
-    .modal-content {
-      padding: 2rem 2.8rem 2.8rem;
-    }
-
-    .modal-meta {
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-      margin-bottom: .7rem;
-    }
-
-    .modal-category {
-      font-family: 'Cinzel', serif;
-      font-size: .65rem;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      color: var(--sage);
-    }
-
-    .modal-date {
-      font-family: 'Cinzel', serif;
-      font-size: .6rem;
-      letter-spacing: .15em;
-      color: rgba(184, 201, 160, .38);
-    }
-
-    .modal-title {
-      font-family: 'Cinzel Decorative', serif;
-      font-size: clamp(1.4rem, 3vw, 2rem);
-      color: var(--cream);
-      margin-bottom: .5rem;
-    }
-
-    .modal-rule {
-      width: 60px;
-      height: 2px;
-      margin-bottom: 1.4rem;
-      background: linear-gradient(90deg, var(--bordeaux), var(--gold));
-    }
-
-    .modal-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .45rem;
-      margin-bottom: 1.8rem;
-    }
-
-    .modal-section {
-      margin-bottom: 1.8rem;
-    }
-
-    .modal-section-title {
-      font-family: 'Cinzel', serif;
-      font-size: .7rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--gold);
-      margin-bottom: .8rem;
-      display: flex;
-      align-items: center;
-      gap: .7rem;
-    }
-
-    .modal-section-title::after {
-      content: '';
-      flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, rgba(200, 132, 42, .3), transparent);
-    }
-
-    .modal-text {
-      font-size: .95rem;
-      line-height: 1.9;
-      color: rgba(240, 230, 200, .72);
-    }
-
-    .modal-text p {
-      margin-bottom: .9rem;
-    }
-
-    .modal-text p:last-child {
-      margin-bottom: 0;
-    }
-
-    .modal-bullets {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: .6rem;
-    }
-
-    .modal-bullets li {
-      display: flex;
-      gap: .9rem;
-      align-items: flex-start;
-      font-size: .92rem;
-      line-height: 1.72;
-      color: rgba(240, 230, 200, .7);
-    }
-
-    .modal-bullets li::before {
-      content: '*';
-      color: var(--rust);
-      flex-shrink: 0;
-      font-size: .6rem;
-      margin-top: .28rem;
-    }
-
-    .modal-links {
-      display: flex;
-      flex-wrap: wrap;
-      gap: .8rem;
-      margin-top: 2rem;
-      padding-top: 1.6rem;
-      border-top: 1px solid rgba(200, 132, 42, .15);
-    }
-
-    .modal-link {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      font-family: 'Cinzel', serif;
-      font-size: .68rem;
-      letter-spacing: .12em;
-      text-transform: uppercase;
-      color: var(--cream);
-      text-decoration: none;
-      border: 1px solid rgba(200, 132, 42, .35);
-      padding: .55rem 1.2rem;
-      border-radius: 2px;
-      background: rgba(200, 132, 42, .07);
-      transition: all .3s;
-    }
-
-    .modal-link:hover {
-      background: rgba(200, 132, 42, .18);
-      border-color: var(--amber);
-      color: var(--amber);
-    }
-
-    .modal-link.primary {
-      background: rgba(200, 132, 42, .16);
-      border-color: var(--gold);
-      color: var(--amber);
-    }
-
-    .modal-link.primary:hover {
-      background: rgba(200, 132, 42, .3);
-    }
-
-    .modal-link svg {
-      transition: transform .3s;
-    }
-
-    .modal-link:hover svg {
-      transform: translateX(3px);
-    }
-
-    /* -- CONTACT -------------------------------------------------- */
-    .contact-inner {
-      max-width: 600px;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    .contact-note {
-      font-size: .9rem;
-      color: rgba(240, 230, 200, .5);
-      margin-top: 1.2rem;
-      line-height: 1.8;
-    }
-
-    .contact-email {
-      display: inline-block;
-      margin-top: 1.8rem;
-      font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
-      color: var(--amber);
-      text-decoration: none;
-      border-bottom: 1px solid rgba(200, 132, 42, .3);
-      padding-bottom: .2rem;
-      transition: color .3s, border-color .3s;
-    }
-
-    .contact-email:hover {
-      color: var(--cream);
-      border-color: var(--cream);
-    }
-
-    /* -- FOOTER --------------------------------------------------- */
-    footer {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: 2rem;
-      border-top: 1px solid rgba(200, 132, 42, .1);
-      font-family: 'Cinzel', serif;
-      font-size: .68rem;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: rgba(184, 201, 160, .32);
-    }
-
-    .ornament {
-      color: rgba(200, 132, 42, .28);
-      font-size: 1.2rem;
-      letter-spacing: .5em;
-      margin-bottom: .8rem;
-    }
-
-    /* -- SCROLL REVEAL -------------------------------------------- */
-    .reveal {
-      opacity: 0;
-      transform: translateY(32px);
-      transition: opacity .85s, transform .85s;
-    }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: none;
-    }
-
-    /* -- KEYFRAMES ------------------------------------------------ */
-    @keyframes fadeUp {
-      from {
-        opacity: 0;
-        transform: translateY(28px);
-      }
-
-      to {
-        opacity: 1;
-        transform: none;
-      }
-    }
-
-    @keyframes rotateBorder {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes scrollPulse {
-
-      0%,
-      100% {
-        opacity: .4;
-        transform: scaleY(.9);
-      }
-
-      50% {
-        opacity: 1;
-        transform: scaleY(1.1);
-      }
-    }
-
-    /* -- RESPONSIVE ----------------------------------------------- */
     @media (max-width: 960px) {
-      .project-card.featured {
-        grid-column: span 1;
-      }
-
-      .hero-inner {
-        gap: 3rem;
-      }
-
-      .hero-photo-wrap,
-      .hero-photo {
-        width: 160px;
-        height: 160px;
-      }
+      .project-card.featured { grid-column: span 1; }
+      .hero-inner { gap: 3rem; }
+      .hero-photo-wrap, .hero-photo { width: 160px; height: 160px; }
     }
-
     @media (max-width: 720px) {
-      nav {
-        padding: 1rem 1.5rem;
-      }
-
-      .hero {
-        padding: 6rem 1.5rem 3rem;
-      }
-
-      .hero-inner {
-        flex-direction: column-reverse;
-        align-items: center;
-        text-align: center;
-        gap: 2rem;
-      }
-
-      .hero-text {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-      }
-
-      .hero-divider {
-        margin: 1.4rem auto;
-      }
-
-      .scroll-hint {
-        align-items: center;
-      }
-
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .modal-content {
-        padding: 1.5rem 1.5rem 2rem;
-      }
-
-      .modal-hero-img {
-        height: 200px;
-      }
+      nav { padding: 1rem 1.5rem; }
+      .hero { padding: 6rem 1.5rem 3rem; }
+      .hero-inner { flex-direction: column-reverse; align-items: center; text-align: center; gap: 2rem; }
+      .hero-text { display: flex; flex-direction: column; align-items: center; }
+      .hero-divider { margin: 1.4rem auto; }
+      .scroll-hint { align-items: center; }
+      .projects-grid { grid-template-columns: 1fr; }
+      .modal-content { padding: 1.5rem 1.5rem 2rem; }
+      .modal-hero-img { height: 200px; }
     }
   </style>
 </head>
@@ -1021,27 +292,22 @@
         <div class="hero-divider"></div>
         <p class="hero-bio">
           Helloo! I'm a game designer and programmer driven by a lifelong fascination with the fantasy worlds
-          we call games. After studying
-          Computer Science in Antwerp I pursued a master's in Game Studies &amp; Engineering
+          we call games. After studying Computer Science in Antwerp I pursued a master's in Game Studies &amp; Engineering
           in Austria to learn and research about what games can mean for people and society.
         </p>
         <p class="hero-bio">
-          I approach my work with that same mindset. To me, designing games is not just about mechanics or systems, but about shaping experiences that influence
+          I am very passionate about exploring what games can mean to people and society. Designing games is not just about mechanics or systems, but about shaping experiences that influence
           how people feel, think, and interact with the world.
         </p>
       </div>
-
       <div class="hero-photo-wrap">
         <div class="hero-photo">
-          <!-- ADD YOUR PHOTO: replace this div with <img src="assets/img/profile.jpg" alt="Mano Marichal"> -->
           <img src="assets/img/me.png" alt="Mano Marichal">
-
-          </img>
         </div>
       </div>
+    </div>
   </section>
 
-  <!-- Project cards are built automatically from the PROJECTS array in the script below -->
   <section id="projects">
     <div class="section-header reveal">
       <p class="section-label">Portfolio</p>
@@ -1075,16 +341,19 @@
 
   <script>
     /* ============================================================
-       main.js -- Mano Marichal Portfolio
-       ============================================================
-       HOW TO EDIT:
-       - Add / remove / reorder projects in the PROJECTS array below
-       - Each project renders its own card AND modal automatically
-       - To add a project page: create projects/<id>.html from the template
-    
-       CARD ACCENT COLORS: "amber" | "green" | "crimson"
-       TAG CLASSES:        "tag-amber" | "tag-green" | "tag-red" | "tag-mist"
-       ============================================================ */
+       HOW TO ADD PLATFORM LINKS TO A PROJECT:
+       Add a "platformLinks" array to any project entry. Each item:
+         { type: 'youtube' | 'itch' | 'steam' | 'github' | 'link', label: 'Button Text', href: 'https://...' }
+
+       Examples:
+         { type: 'youtube', label: 'Watch on YouTube', href: 'https://youtube.com/...' }
+         { type: 'itch',    label: 'Play on itch.io',  href: 'https://shano19.itch.io/...' }
+         { type: 'steam',   label: 'Steam Page',       href: 'https://store.steampowered.com/...' }
+         { type: 'github',  label: 'Source Code',      href: 'https://github.com/...' }
+         { type: 'link',    label: 'Website',          href: 'https://...' }
+
+       Platform badges appear both on the card AND in the modal automatically.
+    ============================================================ */
 
     const PROJECTS = [
       {
@@ -1092,24 +361,22 @@
         accent: 'amber',
         category: 'Commercial Game',
         title: 'The Firelight (Working Title)',
-        image: 'assets/img/modal_headers/firelight.png',               // e.g. 'assets/img/portfolio/bagels.jpg'
+        image: 'assets/img/modal_headers/firelight.png',
         desc: 'A two player horror-lite that aims to bring players closer together through a tense test of teamwork. The game is developed under Snowberry Games, a game studio I co-founded.',
         tags: [
-          { label: 'Team Lead', cls: 'tag-red' },
-          { label: 'Game Design', cls: 'tag-amber' },
-          { label: 'Programming', cls: 'tag-amber' },
+          { label: 'Game Design', cls: 'tag-green' },
+          { label: 'Programming', cls: 'tag-green' },
+        ],
+        platformLinks: [
+          // { type: 'steam', label: 'Steam Page', href: 'https://store.steampowered.com/...' },
         ],
         date: '2023 - 2024',
-        overview: `
-      <p>Bagels of War is a tower defense strategy game I developed over roughly a year as my
-      main student project. After concepting I assembled a small team -- two artists, a sound
-      designer, and a composer -- and acted as both lead designer and programmer.</p>
-    `,
+        overview: `<p>Bagels of War is a tower defense strategy game I developed over roughly a year as my main student project.</p>`,
         highlights: [
           'Led a team of 5 from concept to release.',
           'Designed all tower-defense mechanics, enemy waves, and progression curves.',
           'Programmed the full game in Godot / GDScript.',
-          'Top 3 finish in Austria\'s national student game competition.',
+          "Top 3 finish in Austria's national student game competition.",
         ],
         links: [
           { label: 'Play on itch.io', href: 'https://shano19.itch.io/bagels-of-war', primary: true },
@@ -1121,28 +388,22 @@
         accent: 'green',
         category: 'Hobby',
         title: 'Super Mario Maker 2: Troll Levels',
-        image: 'assets/img/modal_headers/mm.jpg',               // e.g. 'assets/img/portfolio/mm.jpg'
-        desc: 'Designed various troll levels. These are a special type of level that try to predict what the player will do and punishes them for it, in an entertaining manner. Some of these reached millions of plays and views on YouTube.',
+        image: 'assets/img/modal_headers/mm.jpg',
+        desc: 'Designed various troll levels. These are a special type of level that try to predict what the player will do and punishes them for it, in an entertaining, slapsticky manner.',
         tags: [
-          { label: 'Level Design', cls: 'tag-amber' },
-          { label: 'Player Psychology', cls: 'tag-green' },
+          { label: 'Level Design', cls: 'tag-green' },
+        ],
+        platformLinks: [
+          { type: 'youtube', label: 'YouTube Playlist', href: 'https://www.youtube.com/playlist?list=PL5RGR66dtNhQibjD6d6ruJkIktu_RpWJG' },
         ],
         date: '2019 - 2022',
-        award: null,
-        overview: `
-      <p>Troll levels are a special type of level that try
-        to predict what the player will do and punishes them for it, in an
-        entertaining manner. Combining clever traps with a healthy dose of slapstick, troll
-        levels aim to constantly subvert the expectations of the player.</p>
-    `,
+        overview: `<p>Troll levels are a special type of level that try to predict what the player will do and punishes them for it, in an entertaining manner.</p>`,
         highlights: [
           '<strong>The Salt Mines</strong> -- 150+ hours of construction, ~1 hour to complete. Mutates the level between deaths.',
           "<strong>Carl's Trash Can</strong> -- 5-minute ending sequence that subverts everything the player learned.",
           'Both levels played by major YouTube creators with millions of combined views.',
         ],
-        links: [
-          { label: 'YouTube playlist', href: 'https://www.youtube.com/playlist?list=PL5RGR66dtNhQibjD6d6ruJkIktu_RpWJG', primary: true },
-        ],
+        links: [],
       },
 
       {
@@ -1150,27 +411,20 @@
         accent: 'crimson',
         category: 'Academic Research',
         title: 'Games as playgrounds of Identity',
-        image: 'assets/img/modal_headers/id.png',               // e.g. 'assets/img/portfolio/bagels.jpg'
+        image: 'assets/img/modal_headers/id.png',
         desc: 'An academic exploration on how immersive digital spaces can function as powerful environments for experimenting with identity, gender, self presentation, and the ideal self.',
         tags: [
           { label: 'Game Studies', cls: 'tag-green' },
           { label: 'Identity', cls: 'tag-green' },
         ],
+        platformLinks: [],
         date: '2023 - 2024',
-        overview: `
-      <p>Bagels of War is a tower defense strategy game I developed over roughly a year as my
-      main student project. After concepting I assembled a small team -- two artists, a sound
-      designer, and a composer -- and acted as both lead designer and programmer.</p>
-    `,
+        overview: `<p>An academic paper exploring identity formation in digital game spaces.</p>`,
         highlights: [
           'Led a team of 5 from concept to release.',
           'Designed all tower-defense mechanics, enemy waves, and progression curves.',
-          'Programmed the full game in Godot / GDScript.',
-          'Top 3 finish in Austria\'s national student game competition.',
         ],
-        links: [
-          { label: 'Play on itch.io', href: 'https://shano19.itch.io/bagels-of-war', primary: true },
-        ],
+        links: [],
       },
 
       {
@@ -1178,28 +432,24 @@
         accent: 'crimson',
         category: 'Student Project',
         title: 'Bagels of War',
-        image: 'assets/img/modal_headers/bagels.png',               // e.g. 'assets/img/portfolio/bagels.jpg'
+        image: 'assets/img/modal_headers/bagels.png',
         desc: 'Tower defense strategy game developed over a year, leading a team of artists, sound designer, and composer. Nominated for the PGDA Talent Award 2024.',
         tags: [
-          { label: 'Team Lead', cls: 'tag-red' },
-          { label: 'Game Design', cls: 'tag-amber' },
-          { label: 'Programming', cls: 'tag-amber' },
+          { label: 'Game Design', cls: 'tag-green' },
+          { label: 'Programming', cls: 'tag-green' },
+        ],
+        platformLinks: [
+          { type: 'itch', label: 'itch.io', href: 'https://shano19.itch.io/bagels-of-war' },
         ],
         date: '2023 - 2024',
-        overview: `
-      <p>Bagels of War is a tower defense strategy game I developed over roughly a year as my
-      main student project. After concepting I assembled a small team -- two artists, a sound
-      designer, and a composer -- and acted as both lead designer and programmer.</p>
-    `,
+        overview: `<p>Bagels of War is a tower defense strategy game I developed over roughly a year as my main student project. After concepting I assembled a small team -- two artists, a sound designer, and a composer -- and acted as both lead designer and programmer.</p>`,
         highlights: [
           'Led a team of 5 from concept to release.',
           'Designed all tower-defense mechanics, enemy waves, and progression curves.',
           'Programmed the full game in Godot / GDScript.',
-          'Top 3 finish in Austria\'s national student game competition.',
+          "Top 3 finish in Austria's national student game competition.",
         ],
-        links: [
-          { label: 'Play on itch.io', href: 'https://shano19.itch.io/bagels-of-war', primary: true },
-        ],
+        links: [],
       },
 
       {
@@ -1207,19 +457,16 @@
         accent: 'green',
         category: 'Hobby',
         title: 'Game Jams',
-        image: 'assets/img/modal_headers/village.png',               // e.g. 'assets/img/portfolio/bertleroyale.jpg'
+        image: 'assets/img/modal_headers/village.png',
         desc: 'Over 16 game jams spanning VR, board games, motion capture games, party card games, and many genres of computer games.',
         tags: [
-          { label: 'Teamwork', cls: 'tag-amber' },
-          { label: 'Rapid Prototyping', cls: 'tag-amber' },
+          { label: 'Teamwork', cls: 'tag-green' },
+          { label: 'Rapid Prototyping', cls: 'tag-green' },
+        ],
+        platformLinks: [
         ],
         date: '2021 - Present',
-        award: null,
-        overview: `
-      <p>Over 16 game jams across multiple countries and formats -- digital, physical, VR,
-      cooperative, competitive. Jams are where I do my most experimental work: no polish
-      pressure, just creative problem-solving under time constraints.</p>
-    `,
+        overview: `<p>Over 16 game jams across multiple countries and formats -- digital, physical, VR, cooperative, competitive.</p>`,
         highlights: [
           '<strong>Bertle Royale</strong> -- physical party card game, 2nd place in Design, Fun, and Overall.',
           '<strong>Snek.Game</strong> -- absurdist puzzle game (a la What the Golf). Unity.',
@@ -1227,45 +474,32 @@
           '<strong>Crab It</strong> -- AI Summer School (Malta), body-tracking game, 3rd place overall.',
           '<strong>Why The Long Gun?</strong> -- roguelike where you attach guns together. Godot, team of 8.',
         ],
-        links: [
-          { label: 'itch.io profile', href: 'https://shano19.itch.io/', primary: true },
-        ],
+        links: [],
       },
-
-       
 
       {
         id: 'electric-alps',
-        featured: false,               // spans 2 columns on wide screens
+        featured: false,
         accent: 'amber',
         category: 'Game Design Internship',
         title: 'Electric Alps',
-        image: 'assets/img/modal_headers/ea1.jpg',               // e.g. 'assets/img/portfolio/ea1.jpg'
+        image: 'assets/img/modal_headers/ea1.jpg',
         desc: 'Designed the progression and reward systems, plus 12 tutorial levels that teach core mechanics of the game Electric Alps.',
         tags: [
           { label: 'Systems Design', cls: 'tag-green' },
           { label: 'Level Design', cls: 'tag-green' },
         ],
-        // --- Modal content ---
+        platformLinks: [
+          { type: 'steam', label: 'Steam', href: 'https://store.steampowered.com/app/2674550/Electric_Alps/' },
+        ],
         date: '2023',
-        award: null,
-        overview: `
-      <p>During my internship at Dirty Paws Studio I worked as a game designer on Electric Alps.
-      I joined the team mid-production and was responsible for two main areas: designing the
-      full <strong>progression and reward systems</strong> for the game, and creating blockout
-      layouts for the tutorial sequence.</p>
-      <p>Every decision had to be justified not just creatively, but in terms of scope and
-      the team's existing systems -- a valuable constraint that forced clear thinking.</p>
-    `,
+        overview: `<p>During my internship at Dirty Paws Studio I worked as a game designer on Electric Alps. I joined the team mid-production and was responsible for two main areas: designing the full <strong>progression and reward systems</strong> for the game, and creating blockout layouts for the tutorial sequence.</p>`,
         highlights: [
           'Designed the overall progression arc and reward loop for the entire game.',
           'Created 12 tutorial level blockouts, each teaching one mechanic through space -- no text prompts.',
           'Iterated through multiple design reviews with senior designers, integrating feedback each cycle.',
         ],
-        links: [
-          { label: 'Dirty Paws Studio', href: 'https://www.dirtypaws.studio/', primary: true },
-          { label: 'About Electric Alps', href: 'https://www.dirtypaws.studio/electric-alps' },
-        ],
+        links: [],
       },
 
       {
@@ -1273,21 +507,15 @@
         accent: 'crimson',
         category: 'Board Game',
         title: 'Dungeon of the Mad DM',
-        image: 'assets/img/modal_headers/dotdms.jpg',               // e.g. 'assets/img/portfolio/dotdm.jpg'
+        image: 'assets/img/modal_headers/dotdms.jpg',
         desc: 'Party board game for 2-5 players where instead of helping players, the dungeon master actively tries to eliminate them',
         tags: [
-          { label: 'Game Design', cls: 'tag-amber' },
+          { label: 'Game Design', cls: 'tag-green' },
           { label: 'Tabletop', cls: 'tag-green' },
         ],
+        platformLinks: [],
         date: '2022 - 2023',
-        award: null,
-        overview: `
-      <p>Dungeon of the Mad DM is a party game where the dungeon master's goal is to
-      <em>kill</em> the adventurers. Fallen players become ghosts who can still help allies.</p>
-      <p>Two physical prototypes were built and playtested. The game never made it to
-      publishing -- we underestimated the logistics -- but the design is solid and there's
-      ambition to pick it up again one day.</p>
-    `,
+        overview: `<p>Dungeon of the Mad DM is a party game where the dungeon master's goal is to <em>kill</em> the adventurers. Fallen players become ghosts who can still help allies.</p>`,
         highlights: [
           '4 playable characters, each with unique action cards.',
           '50+ unique action cards total, 8 monsters, 8 treasures, 16 dungeon room tiles.',
@@ -1301,18 +529,15 @@
         accent: 'green',
         category: 'Academic Research',
         title: 'Master Thesis',
-        image: 'assets/img/modal_headers/thesishell.jpg',               // e.g. 'assets/img/portfolio/thesis.jpg'
+        image: 'assets/img/modal_headers/thesishell.jpg',
         desc: 'Scientific research into the impact of P2W microtransactions on player experience. Involved designing a game prototype, structuring a questionnaire study, and analysing the results.',
         tags: [
-          { label: 'Game Studies', cls: 'tag-amber' },
+          { label: 'Game Studies', cls: 'tag-green' },
           { label: 'UX Research', cls: 'tag-green' },
         ],
+        platformLinks: [{ type: 'link',    label: 'View',          href: 'https://netlibrary.aau.at/obvuklhs/download/pdf/12269481' }],
         date: '2023 - 2024',
-        overview: `
-      <p>My master's thesis investigated the impact of pay-to-win microtransactions on player
-      experience. The research combined a literature review, a custom game prototype, and a
-      structured questionnaire study with real participants.</p>
-    `,
+        overview: `<p>My master's thesis investigated the impact of pay-to-win microtransactions on player experience. The research combined a literature review, a custom game prototype, and a structured questionnaire study with real participants.</p>`,
         highlights: [
           'Designed and built a game prototype to isolate P2W variables in a controlled context.',
           'Structured a questionnaire measuring immersion, fairness perception, motivation, and frustration.',
@@ -1326,25 +551,20 @@
         accent: 'amber',
         category: 'Board Game',
         title: 'A Beesy Week',
-        image: 'assets/img/modal_headers/beesyweek.jpg',               // e.g. 'assets/img/portfolio/dotdm.jpg'
+        image: 'assets/img/modal_headers/beesyweek.jpg',
         desc: 'Boardgame prototype developed for the sustainability board game jam. The idea was to design a fun, simple game that teaches children about the role of bees in the ecosystem.',
         tags: [
-          { label: 'Game Design', cls: 'tag-amber' },
+          { label: 'Game Design', cls: 'tag-green' },
           { label: 'Tabletop', cls: 'tag-green' },
         ],
+        platformLinks: [
+          { type: 'itch', label: 'Itch.io', href: 'https://shano19.itch.io/a-beesy-week' },
+        ],
         date: '2022 - 2023',
-        award: null,
-        overview: `
-      <p>Dungeon of the Mad DM is a party game where the dungeon master's goal is to
-      <em>kill</em> the adventurers. Fallen players become ghosts who can still help allies.</p>
-      <p>Two physical prototypes were built and playtested. The game never made it to
-      publishing -- we underestimated the logistics -- but the design is solid and there's
-      ambition to pick it up again one day.</p>
-    `,
+        overview: `<p>A Beesy Week is a board game designed for the sustainability game jam with a focus on teaching children about bees and ecosystems through play.</p>`,
         highlights: [
-          '4 playable characters, each with unique action cards.',
-          '50+ unique action cards total, 8 monsters, 8 treasures, 16 dungeon room tiles.',
-          'Two physical prototypes built and playtested with real groups.',
+          'Designed for a young audience without dumbing down the educational content.',
+          'Prototype built and playtested during the jam.',
         ],
         links: [],
       },
@@ -1354,19 +574,18 @@
         accent: 'amber',
         category: 'Student project',
         title: 'C Compiler',
-        image: 'assets/img/modal_headers/compiler.png',               // e.g. 'assets/img/portfolio/compiler.png'
+        image: 'assets/img/modal_headers/compiler.png',
         desc: 'Compiles a meaningful subset of C to LLVM IR and MIPS assembly. Includes semantic error detection with source-location reporting and full AST visualisation. Written in Python.',
         tags: [
           { label: 'Python', cls: 'tag-green' },
-          { label: 'LLVM', cls: 'tag-mist' },
-          { label: 'MIPS', cls: 'tag-mist' },
+          { label: 'LLVM', cls: 'tag-green' },
+          { label: 'MIPS', cls: 'tag-green' },
+        ],
+        platformLinks: [
+          // { type: 'github', label: 'Source Code', href: 'https://github.com/...' },
         ],
         date: '2022',
-        award: null,
-        overview: `
-      <p>A compiler written in Python that takes a meaningful subset of C and outputs both
-      LLVM IR and MIPS assembly. Built from scratch as part of my Computer Science bachelor.</p>
-    `,
+        overview: `<p>A compiler written in Python that takes a meaningful subset of C and outputs both LLVM IR and MIPS assembly. Built from scratch as part of my Computer Science bachelor.</p>`,
         highlights: [
           'Supports most C control flow: if/else, while, for, switch, functions, recursion.',
           'Full semantic error detection with source line and column reporting.',
@@ -1381,21 +600,16 @@
         accent: 'green',
         category: 'Student project',
         title: 'Size-- (Compression Tool)',
-        image: 'assets/img/modal_headers/igmp.jpg',               // e.g. 'assets/img/portfolio/pal.jpg'
+        image: 'assets/img/modal_headers/igmp.jpg',
         desc: 'Six grammar-based compression algorithms, a custom binary format (PAL), Huffman encoding, and a full CLI with visualisation tooling to compare algorithm performance. Written in C++.',
         tags: [
-          { label: 'Algorithms', cls: 'tag-amber' },
+          { label: 'Algorithms', cls: 'tag-green' },
           { label: 'C++', cls: 'tag-green' },
-          { label: 'Huffman', cls: 'tag-mist' },
-          { label: 'CLI', cls: 'tag-mist' },
+          { label: 'CLI', cls: 'tag-green' },
         ],
+        platformLinks: [],
         date: '2021',
-        award: null,
-        overview: `
-      <p>A compression and decompression tool implementing six grammar-based algorithms.
-      Input is converted to context-free grammars stored in a custom binary format (PAL),
-      then further compressed with Huffman encoding. Built with two friends.</p>
-    `,
+        overview: `<p>A compression and decompression tool implementing six grammar-based algorithms. Built with two friends.</p>`,
         highlights: [
           '6 compression algorithms implemented from scratch.',
           'Custom binary storage format (PAL) designed by the team.',
@@ -1410,20 +624,16 @@
         accent: 'crimson',
         category: 'Student Project',
         title: '3D Graphics Engine',
-        image: 'assets/img/modal_headers/cg.jpg',               // e.g. 'assets/img/portfolio/cg.jpg'
+        image: 'assets/img/modal_headers/cg.jpg',
         desc: 'A graphics engine built from scratch in C++ that renders 3D meshes with textures, lighting, and shadows.',
         tags: [
-          { label: '3D Rendering', cls: 'tag-amber' },
+          { label: '3D Rendering', cls: 'tag-green' },
           { label: 'C++', cls: 'tag-green' },
           { label: 'Linear Algebra', cls: 'tag-mist' },
         ],
+        platformLinks: [],
         date: '2021',
-        award: null,
-        overview: `
-      <p>A 3D graphics engine written in C++ from absolute first principles -- built as the
-      Computer Graphics coursework during my bachelor. Every rendering stage was implemented
-      by hand to understand the underlying mathematics.</p>
-    `,
+        overview: `<p>A 3D graphics engine written in C++ from absolute first principles -- built as the Computer Graphics coursework during my bachelor.</p>`,
         highlights: [
           'Built up from 2D line rasterisation through full 3D projection.',
           'Texture mapping with UV coordinates.',
@@ -1438,19 +648,15 @@
         accent: 'amber',
         category: 'Hobby',
         title: 'Japanese',
-        image: 'assets/img/modal_headers/jp.jpg',               // e.g. 'assets/img/portfolio/jp.jpg'
+        image: 'assets/img/modal_headers/jp.jpg',
         desc: '3+ years of daily self-study + a semester studying in Tokyo and a JPT score of 660/990, approximately N2/B2 level.',
         tags: [
-          { label: 'Japanese', cls: 'tag-amber' },
-          { label: 'Self-Study', cls: 'tag-mist' },
+          { label: 'Japanese', cls: 'tag-green' },
+          { label: 'Self-Study', cls: 'tag-green' },
         ],
+        platformLinks: [],
         date: '2020 - Present',
-        award: null,
-        overview: `
-      <p>I started self-studying Japanese during the COVID pandemic with one goal: to read
-       by Nahoko Uehashi. Three-plus years of daily study and a semester in Tokyo
-      later -- I can confirm it was worth it.</p>
-    `,
+        overview: `<p>I started self-studying Japanese during the COVID pandemic with one goal: to read by Nahoko Uehashi. Three-plus years of daily study and a semester in Tokyo later -- I can confirm it was worth it.</p>`,
         highlights: [
           '3+ years of daily self-study, no formal instruction.',
           'Scored 660/990 on the JPT -- approximately JLPT N2 / B2 level.',
@@ -1461,13 +667,30 @@
     ];
 
     /* ============================================================
-       RENDERING -- no need to edit below this line
-       ============================================================ */
+       PLATFORM BADGE ICONS & RENDERER
+    ============================================================ */
 
-    // -- SVG icons ------------------------------------------------
+    const PLATFORM_ICONS = {
+      youtube: `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 00.5 6.2 31 31 0 000 12a31 31 0 00.5 5.8 3 3 0 002.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 002.1-2.1A31 31 0 0024 12a31 31 0 00-.5-5.8zM9.8 15.5V8.5l6.2 3.5-6.2 3.5z"/></svg>`,
+      itch: `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M3.13 1.06C2.08 1.7.04 4.09 0 4.5v1c0 1.26 1.18 2.36 2.25 2.36 1.29 0 2.38-1.07 2.38-2.36 0 1.29 1.06 2.36 2.35 2.36 1.3 0 2.33-1.07 2.33-2.36 0 1.29 1.08 2.36 2.37 2.36h.04c1.3 0 2.37-1.07 2.37-2.36 0 1.29 1.04 2.36 2.33 2.36 1.29 0 2.35-1.07 2.35-2.36 0 1.29 1.09 2.36 2.38 2.36C22.82 7.86 24 6.76 24 5.5v-1c-.04-.41-2.08-2.8-3.13-3.44C18.64.37 5.42.35 3.13 1.06zM8.5 9.5c-.47 0-.92.06-1.35.17C6.58 9.88 5 11 5 13.5v3C5 19.5 6.5 22 12 22s7-2.5 7-5.5v-3c0-2.5-1.58-3.62-2.15-3.83-.43-.11-.88-.17-1.35-.17H8.5zm-.5 2h8v1H8v-1zm0 3h8v1H8v-1z"/></svg>`,
+      steam: `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M11.98 0A12 12 0 000 12a12 12 0 00.01.27L4.5 14.1a3.37 3.37 0 011.7-.46 3.4 3.4 0 01.37.02l2-2.88v-.04a5.1 5.1 0 115.1 5.1h-.12l-2.83 2.02v.05a3.4 3.4 0 01-3.4 3.13 3.4 3.4 0 01-3.22-2.32L.4 17.25A12 12 0 1011.98 0zM7.24 17.24a2.25 2.25 0 00-2.12-1.5 2.26 2.26 0 000 4.52 2.25 2.25 0 002.23-2.04l-.11-.98zM14.1 6.9a3.4 3.4 0 100 6.8 3.4 3.4 0 000-6.8zm0 1.13a2.27 2.27 0 110 4.54 2.27 2.27 0 010-4.54z"/></svg>`,
+      github: `<svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.44 9.8 8.2 11.38.6.11.82-.26.82-.58v-2.03c-3.34.73-4.04-1.6-4.04-1.6-.54-1.38-1.33-1.75-1.33-1.75-1.09-.74.08-.73.08-.73 1.2.08 1.84 1.24 1.84 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.13-.3-.54-1.52.12-3.18 0 0 1.01-.32 3.3 1.23a11.5 11.5 0 016 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.25 2.88.12 3.18.77.84 1.24 1.91 1.24 3.22 0 4.61-2.81 5.63-5.48 5.92.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.82.58A12.01 12.01 0 0024 12C24 5.37 18.63 0 12 0z"/></svg>`,
+      link: `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>`,
+    };
+
+    function renderPlatformBadges(links) {
+      if (!links || !links.length) return '';
+      return links.map(l => {
+        const icon = PLATFORM_ICONS[l.type] || PLATFORM_ICONS.link;
+        return `<a href="${l.href}" target="_blank" rel="noopener" class="platform-badge ${l.type}">${icon}${l.label}</a>`;
+      }).join('');
+    }
+
+    /* ============================================================
+       SVG ICONS
+    ============================================================ */
     const ICON_IMAGE = `<svg width="32" height="32" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9l4-4 4 4 4-6 4 4"/><circle cx="8" cy="14" r="1.5"/></svg>`;
     const ICON_ARROW = `<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`;
-    const ICON_BACK = `<svg width="14" height="14" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>`;
     const ICON_EXT = `<svg width="12" height="12" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg>`;
 
     function imgOrPlaceholder(src, alt, cls = '') {
@@ -1479,86 +702,87 @@
       return tags.map(t => `<span class="tag ${t.cls}">${t.label}</span>`).join('');
     }
 
-    // -- Cards -----------------------------------------------------
+    /* ============================================================
+       CARDS
+    ============================================================ */
     function renderCards() {
       const grid = document.getElementById('projects-grid');
       if (!grid) return;
 
       grid.innerHTML = PROJECTS.map(p => `
-    <article class="project-card ${p.featured ? 'featured' : ''} reveal" data-id="${p.id}">
-      ${p.featured ? '<div class="corner-tl"></div><div class="corner-br"></div>' : ''}
-      <div class="card-image">
-        ${imgOrPlaceholder(p.image, p.title)}
-        <div class="card-image-overlay"></div>
-      </div>
-      <div class="card-accent ${p.accent}"></div>
-      <div class="card-body">
-        <p class="card-category">${p.category}</p>
-        <h3 class="card-title">${p.title}</h3>
-        <p class="card-desc">${p.desc}</p>
-        <div class="card-tags">${renderTags(p.tags)}</div>
-        ${p.award ? `<div class="card-award">${p.award}</div>` : ''}
-      </div>
-
-    </article>
-  `).join('');
-      // MORE INFO BUTTON, add back above the /div
-      // <div class="card-footer">
-      //   <button class="btn-more" data-id="${p.id}">More Info ${ICON_ARROW}</button>
-      // </div>
-      // Delegate click to all "More Info" buttons
-      grid.addEventListener('click', e => {
-        const btn = e.target.closest('.btn-more');
-        if (btn) openModal(btn.dataset.id);
-      });
+        <article class="project-card ${p.featured ? 'featured' : ''} reveal" data-id="${p.id}">
+          ${p.featured ? '<div class="corner-tl"></div><div class="corner-br"></div>' : ''}
+          <div class="card-image">
+            ${imgOrPlaceholder(p.image, p.title)}
+            <div class="card-image-overlay"></div>
+          </div>
+          <div class="card-accent ${p.accent}"></div>
+          <div class="card-body">
+            <p class="card-category">${p.category}</p>
+            <h3 class="card-title">${p.title}</h3>
+            <p class="card-desc">${p.desc}</p>
+            <div class="card-tags">${renderTags(p.tags)}${renderPlatformBadges(p.platformLinks)}</div>
+            ${p.award ? `<div class="card-award">${p.award}</div>` : ''}
+          </div>
+        </article>
+      `).join('');
     }
 
-    // -- Modal -----------------------------------------------------
+    /* ============================================================
+       MODAL
+    ============================================================ */
     function renderModal(id) {
-      const p = document.querySelector ? PROJECTS.find(x => x.id === id) : null;
+      const p = PROJECTS.find(x => x.id === id);
       if (!p) return;
       const modal = document.getElementById('modal');
 
       const bulletsHTML = p.highlights?.length
         ? `<div class="modal-section">
-         <div class="modal-section-title">Highlights</div>
-         <ul class="modal-bullets">
-           ${p.highlights.map(h => `<li>${h}</li>`).join('')}
-         </ul>
-       </div>`
+             <div class="modal-section-title">Highlights</div>
+             <ul class="modal-bullets">
+               ${p.highlights.map(h => `<li>${h}</li>`).join('')}
+             </ul>
+           </div>`
         : '';
 
+      // Old-style links (kept for backwards compat)
       const externalLinks = (p.links || []).map(l =>
         `<a href="${l.href}" target="_blank" rel="noopener" class="modal-link ${l.primary ? 'primary' : ''}">${l.label} ${ICON_EXT}</a>`
       ).join('');
 
+      const hasLinks = !!externalLinks;
+
       modal.innerHTML = `
-    <div class="modal-top-bar"></div>
-    <button class="modal-close" id="modal-close">&#x2715;</button>
-    <div class="modal-hero-img">
-      ${imgOrPlaceholder(p.image, p.title)}
-      <div class="modal-img-overlay"></div>
-    </div>
-    <div class="modal-content">
-      <div class="modal-meta">
-        <span class="modal-category">${p.category}</span>
-        ${p.date ? `<span class="modal-date">${p.date}</span>` : ''}
-      </div>
-      <h2 class="modal-title">${p.title}</h2>
-      <div class="modal-rule"></div>
-      ${p.award ? `<div class="card-award" style="margin-bottom:1.2rem">${p.award}</div>` : ''}
-      <div class="modal-tags">${renderTags(p.tags)}</div>
-      <div class="modal-section">
-        <div class="modal-section-title">Overview</div>
-        <div class="modal-text">${p.overview}</div>
-      </div>
-      ${bulletsHTML}
-      <div class="modal-links">
-        <a href="projects/${p.id}.html" class="modal-link primary">Full Project Page ${ICON_ARROW}</a>
-        ${externalLinks}
-      </div>
-    </div>
-  `;
+        <div class="modal-top-bar"></div>
+        <button class="modal-close" id="modal-close">&#x2715;</button>
+        <div class="modal-hero-img">
+          ${imgOrPlaceholder(p.image, p.title)}
+          <div class="modal-img-overlay"></div>
+        </div>
+        <div class="modal-content">
+          <div class="modal-meta">
+            <span class="modal-category">${p.category}</span>
+            ${p.date ? `<span class="modal-date">${p.date}</span>` : ''}
+          </div>
+          <h2 class="modal-title">${p.title}</h2>
+          <div class="modal-rule"></div>
+          ${p.award ? `<div class="card-award" style="margin-bottom:1.2rem">${p.award}</div>` : ''}
+          <div class="modal-tags">${renderTags(p.tags)}${renderPlatformBadges(p.platformLinks)}</div>
+          <div class="modal-section">
+            <div class="modal-section-title">Overview</div>
+            <div class="modal-text">${p.overview}</div>
+          </div>
+          ${bulletsHTML}
+          ${hasLinks ? `
+          <div class="modal-links">
+            <a href="projects/${p.id}.html" class="modal-link primary">Full Project Page ${ICON_ARROW}</a>
+            ${externalLinks}
+          </div>` : `
+          <div class="modal-links">
+            <a href="projects/${p.id}.html" class="modal-link primary">Full Project Page ${ICON_ARROW}</a>
+          </div>`}
+        </div>
+      `;
 
       document.getElementById('modal-close').onclick = closeModal;
     }
@@ -1576,7 +800,6 @@
       document.body.classList.remove('modal-open');
     }
 
-    // -- Backdrop / keyboard ---------------------------------------
     document.getElementById('modal-backdrop').addEventListener('click', e => {
       if (e.target === e.currentTarget) closeModal();
     });
@@ -1584,89 +807,54 @@
       if (e.key === 'Escape') closeModal();
     });
 
-    // -- Falling leaves --------------------------------------------
+    /* ============================================================
+       FALLING LEAVES
+    ============================================================ */
     function initLeaves() {
       const canvas = document.getElementById('leaf-canvas');
       const ctx = canvas.getContext('2d');
-
       const resize = () => { canvas.width = innerWidth; canvas.height = innerHeight; };
       resize();
       window.addEventListener('resize', resize);
-
-      const COLORS = ['#c45c1a', '#e09940', '#8b2635', '#6e1f2b', '#c8842a', '#b04020', '#d4602a', '#a03828', '#3d6b45'];
-
+      const COLORS = ['#c45c1a','#e09940','#8b2635','#6e1f2b','#c8842a','#b04020','#d4602a','#a03828','#3d6b45'];
       class Leaf {
         constructor() { this.reset(true); }
-        reset(init = false) {
-          this.x = Math.random() * canvas.width;
-          this.y = init ? Math.random() * canvas.height - canvas.height : -30;
-          this.size = 7 + Math.random() * 13;
-          this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
-          this.alpha = 0.35 + Math.random() * 0.5;
-          this.vy = 0.6 + Math.random() * 1.1;
-          this.vx = (Math.random() - 0.5) * 0.7;
-          this.rot = Math.random() * Math.PI * 2;
-          this.rotV = (Math.random() - 0.5) * 0.04;
-          this.swayA = 0.3 + Math.random() * 0.5;
-          this.swayF = 0.007 + Math.random() * 0.006;
-          this.swayO = Math.random() * Math.PI * 2;
-          this.t = 0;
-          this.shape = Math.floor(Math.random() * 3);
+        reset(init=false) {
+          this.x = Math.random()*canvas.width; this.y = init ? Math.random()*canvas.height-canvas.height : -30;
+          this.size = 7+Math.random()*13; this.color = COLORS[Math.floor(Math.random()*COLORS.length)];
+          this.alpha = 0.35+Math.random()*0.5; this.vy = 0.6+Math.random()*1.1; this.vx = (Math.random()-.5)*.7;
+          this.rot = Math.random()*Math.PI*2; this.rotV = (Math.random()-.5)*.04;
+          this.swayA = 0.3+Math.random()*.5; this.swayF = 0.007+Math.random()*.006; this.swayO = Math.random()*Math.PI*2;
+          this.t = 0; this.shape = Math.floor(Math.random()*3);
         }
-        update() {
-          this.t++;
-          this.y += this.vy;
-          this.x += this.vx + Math.sin(this.t * this.swayF + this.swayO) * this.swayA;
-          this.rot += this.rotV;
-          if (this.y > canvas.height + 30) this.reset();
-        }
+        update() { this.t++; this.y+=this.vy; this.x+=this.vx+Math.sin(this.t*this.swayF+this.swayO)*this.swayA; this.rot+=this.rotV; if(this.y>canvas.height+30) this.reset(); }
         draw() {
-          ctx.save();
-          ctx.translate(this.x, this.y);
-          ctx.rotate(this.rot);
-          ctx.globalAlpha = this.alpha;
-          ctx.fillStyle = this.color;
-          const s = this.size;
-          ctx.beginPath();
-          if (this.shape === 0) {
-            // maple-ish
-            ctx.moveTo(0, -s); ctx.bezierCurveTo(s * .4, -s * .8, s * .9, -s * .2, s * .7, s * .1);
-            ctx.bezierCurveTo(s * .4, s * .5, 0, s * .3, 0, s * .7); ctx.bezierCurveTo(0, s * .3, -s * .4, s * .5, -s * .7, s * .1);
-            ctx.bezierCurveTo(-s * .9, -s * .2, -s * .4, -s * .8, 0, -s);
-          } else if (this.shape === 1) {
-            ctx.ellipse(0, 0, s * .42, s * .68, 0, 0, Math.PI * 2);
-          } else {
-            ctx.moveTo(0, -s); ctx.bezierCurveTo(s * .5, -s * .3, s * .5, s * .3, 0, s);
-            ctx.bezierCurveTo(-s * .5, s * .3, -s * .5, -s * .3, 0, -s);
-          }
-          ctx.fill();
-          ctx.restore();
+          ctx.save(); ctx.translate(this.x,this.y); ctx.rotate(this.rot); ctx.globalAlpha=this.alpha; ctx.fillStyle=this.color;
+          const s=this.size; ctx.beginPath();
+          if(this.shape===0){ctx.moveTo(0,-s);ctx.bezierCurveTo(s*.4,-s*.8,s*.9,-s*.2,s*.7,s*.1);ctx.bezierCurveTo(s*.4,s*.5,0,s*.3,0,s*.7);ctx.bezierCurveTo(0,s*.3,-s*.4,s*.5,-s*.7,s*.1);ctx.bezierCurveTo(-s*.9,-s*.2,-s*.4,-s*.8,0,-s);}
+          else if(this.shape===1){ctx.ellipse(0,0,s*.42,s*.68,0,0,Math.PI*2);}
+          else{ctx.moveTo(0,-s);ctx.bezierCurveTo(s*.5,-s*.3,s*.5,s*.3,0,s);ctx.bezierCurveTo(-s*.5,s*.3,-s*.5,-s*.3,0,-s);}
+          ctx.fill(); ctx.restore();
         }
       }
-
-      const leaves = Array.from({ length: 55 }, () => new Leaf());
-      const tick = () => {
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-        leaves.forEach(l => { l.update(); l.draw(); });
-        requestAnimationFrame(tick);
-      };
+      const leaves = Array.from({length:55},()=>new Leaf());
+      const tick = ()=>{ ctx.clearRect(0,0,canvas.width,canvas.height); leaves.forEach(l=>{l.update();l.draw();}); requestAnimationFrame(tick); };
       tick();
     }
 
-    // -- Scroll reveal ---------------------------------------------
+    /* ============================================================
+       SCROLL REVEAL
+    ============================================================ */
     function initReveal() {
       const obs = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); } });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+        entries.forEach(e => { if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);} });
+      }, {threshold:0.1});
+      document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
     }
 
-    // -- Boot ------------------------------------------------------
     renderCards();
     initReveal();
     initLeaves();
-
   </script>
 </body>
-
 </html>
