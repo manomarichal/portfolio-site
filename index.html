@@ -55,14 +55,12 @@
   .intro-name em { font-style: italic; color: var(--gold); }
   .intro p { color: rgba(221,214,196,0.72); max-width: 760px; font-size: 1.2rem; }
   .section-note { color: var(--dim); font-size: 1.08rem; margin: -0.4rem 0 1.1rem; }
-  /* plain text project list — no cards, no borders, no hover backgrounds */
   ul.plain-list { list-style: none; padding: 0; margin: 0; }
   ul.plain-list li {
     display: flex; gap: 0.9rem; align-items: flex-start;
     margin: 0 0 1.1rem;
   }
   ul.plain-list p { margin: 0; }
-  /* steam header capsule ratio: 920x430 */
   .proj-thumb {
     width: 280px; aspect-ratio: 920/430; height: auto; flex-shrink: 0;
     background: rgba(255,255,255,0.04);
@@ -79,7 +77,6 @@
   .proj-desc { color: var(--dim); font-size: 1.12rem; }
   .proj-links { font-size: 0.98rem; margin-top: 0.3rem; }
   .proj-links a { margin-right: 1rem; }
-  /* jam grid — thumbnail tiles, plain style (no shadows/lift) */
   .jam-list {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -180,11 +177,6 @@
 </main>
 <footer><div class="wrap">© 2025 mano marichal</div></footer>
 <script>
-/* ==========================================================
-   DATA
-   (project entries: id, title, image/emoji, desc, platformLinks — no
-   category/highlights/overview since those aren't shown for these items)
-========================================================== */
 const HEADLINE = [
   {
     id: 'the-firelight',
@@ -394,9 +386,6 @@ const OTHER = [
   },
 ];
 
-/* ==========================================================
-   RENDER
-========================================================== */
 function thumbHTML(src, emoji) {
   return src ? `<img src="${src}" alt="" loading="lazy">` : (emoji || '🎮');
 }
