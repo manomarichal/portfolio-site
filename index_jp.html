@@ -23,6 +23,7 @@
     line-height: 1.7;
   }
   .wrap { max-width: 960px; margin: 0 auto; padding: 0 1.5rem; }
+  /* nav — unchanged from before, this part was already fine */
   nav { padding: 1.4rem 0 0; margin-bottom: 3rem; }
   nav .wrap { display: flex; justify-content: space-between; align-items: baseline; }
   .nav-name {
@@ -89,6 +90,7 @@
     gap: 1.1rem;
   }
   .jam-item { display: block; text-decoration: none; }
+  /* itch.io thumbnail ratio: 630x500 */
   .jam-thumb {
     width: 100%; aspect-ratio: 630/500;
     background: rgba(255,255,255,0.04);
@@ -120,17 +122,17 @@
 <nav>
   <div class="wrap">
     <div>
-    <a href="#" class="nav-name">shano19's site</a>
+    <a href="#" class="nav-name">shano19のサイト</a>
   </div>
     <ul class="nav-links">
-      <li><a href="#games">games</a></li>
-      <li><a href="#academic">academic</a></li>
-      <li><a href="#academic">mario maker</a></li>
-      <li><a href="#programming">programming</a></li>
-      <li><a href="#jams">game jams</a></li>
-      <li><a href="#other">other</a></li>
-      <li><a href="#contact">contact</a></li>
-      <li><a href="index_jp.html" class="nav-jp">日本語</a></li>
+      <li><a href="#games">ゲーム</a></li>
+      <li><a href="#academic">研究</a></li>
+      <li><a href="#academic">マリオメーカー</a></li>
+      <li><a href="#programming">プログラミング</a></li>
+      <li><a href="#jams">ゲームジャム</a></li>
+      <li><a href="#other">その他</a></li>
+      <li><a href="#contact">連絡</a></li>
+      <li><a href="index.html" class="nav-jp">English</a></li>
     </ul>
   </div>
 </nav>
@@ -138,53 +140,53 @@
   <section class="intro">
     <div class="wrap">
       <p>
-        Helloo, I am Mano, also known as shano19 :)<br><br> I do game programming / design / academics and am a former mario maker troll creator from Antwerp. Recently, I founded Snowberry Games and under that banner I'm currently developing <strong>Silk & Sorrow</strong>!
+        こんにちは！ マノと申します。shano19としても活動しています。<br><br>プログラマー、ゲームプランナーとゲーム研究者です. 最近に、Snowberry Games というゲーム会社を設立しました。いま、Snowberry GamesでSilk & Sorrowというゲームの開発を行っています!
       </p>
     </div>
   </section>
   <section id="games">
     <div class="wrap">
-      <h2>Games</h2>
+      <h2>ゲーム</h2>
       <ul class="plain-list" id="headline-list"></ul>
     </div>
   </section>
   <section id="academic">
     <div class="wrap">
-      <h2>Game Studies</h2>
+      <h2>ゲーム研究</h2>
       <ul class="plain-list" id="academic-list"></ul>
     </div>
   </section>
   <section id="mm2">
     <div class="wrap">
-      <h2>Mario Maker 2</h2>
-      <p class="section-note">I made some very famous troll levels in mario maker 2, these are my three favorite ones :)</p>
+      <h2>マリオメーカー2</h2>
+      <p class="section-note">スパーマリオメーカー2で有名な騙しコースをいくつか作りました。その中で特にお気に入りの3つです :)</p>
       <ul class="plain-list" id="mm2-list"></ul>
     </div>
   </section>
   <section id="programming">
     <div class="wrap">
-      <h2>Programming</h2>
-      <p class="section-note">Some cool things from my bachelor</p>
+      <h2>プログラミング</h2>
+      <p class="section-note">学士課程で制作した気に入りのプロジェクト</p>
       <ul class="plain-list" id="programming-list"></ul>
     </div>
   </section>
   <section id="jams">
     <div class="wrap">
-      <h2>Game Jams</h2>
+      <h2>ゲームジャム</h2>
       <div class="jam-list" id="jam-list"></div>
     </div>
   </section>
   <section id="other">
     <div class="wrap">
-      <h2>Other</h2>
+      <h2>その他</h2>
       <ul class="plain-list" id="other-list"></ul>
     </div>
   </section>
   <section id="contact">
     <div class="wrap">
-      <h2>Feel free to reach out for anything really!</h2>
+      <h2>お気軽に連絡ください！</h2>
       <p><a href="mailto:mano.marichal@gmail.com" class="contact-email">mano.marichal@gmail.com</a></p>
-      <p style="font-size: 0.83rem; color: var(--dim);">also via snowberry games: <a href="mailto:mano@snowberrygames.be">mano@snowberrygames.be</a></p>
+      <p style="font-size: 0.83rem; color: var(--dim);">snowberry gamesへのご連絡: <a href="mailto:mano@snowberrygames.be">mano@snowberrygames.be</a></p>
     </div>
   </section>
 </main>
@@ -195,22 +197,22 @@ const HEADLINE = [
     id: 'the-firelight',
     title: 'Silk & Sorrow',
     image: 'assets/img/modal_headers/silkandsorrow.png',
-    desc: 'A two-player co-op dark fantasy adventure. I am the game director and also do the programming. The game will have its public reveal in Q3 2026.',
-    platformLinks: [{ label: 'press kit', href: 'https://impress.games/press-kit/snowberry-games/silk--sorrow' }, {label: 'watch trailer', href: 'https://drive.google.com/file/d/1Rs8mN1TKAD-waD5Gumw5rqOdEXeKhhUu/view?usp=drive_link' }],
+    desc: '二人協力プレイのダークファンタジーアドベンチャーです。私はゲームディレクターを務め、プログラミングも担当しています。2026年第3四半期に正式発表予定です',
+    platformLinks: [{ label: 'プレスキット', href: 'https://impress.games/press-kit/snowberry-games/silk--sorrow' }, {label: 'トレーラーを見る', href: 'https://drive.google.com/file/d/1Rs8mN1TKAD-waD5Gumw5rqOdEXeKhhUu/view?usp=drive_link' }],
   },
   {
     id: 'bagels-of-war',
     title: 'Bagels of War',
     image: 'assets/img/modal_headers/bagels.png',
-    desc: 'A tower defense game where bagels fight sandwiches. I worked together with two artists. The project ended up nominated for PGDA Talent Award 2024.',
-    platformLinks: [{ label: 'download it', href: 'https://shano19.itch.io/bagels-of-war' }],
+    desc: 'ベーグルとサンドイッチが戦うタワーディフェンスゲームです。2人のアーティストと共同で制作しました。この作品はPGDA Talent Award 2024にノミネートされました',
+    platformLinks: [{ label: 'ダウンロード', href: 'https://shano19.itch.io/bagels-of-war' }],
   },
   {
     id: 'electric-alps',
     title: 'Electric Alps',
     image: 'assets/img/modal_headers/ea1.jpg',
-    desc: 'Game design internship; I built the progression & reward systems and 12 tutorial levels for a circuitry puzzle game.',
-    platformLinks: [{ label: 'view on steam', href: 'https://store.steampowered.com/app/2674550/Electric_Alps/' }],
+    desc: 'ゲームデザインのインターンシップで制作しました',
+    platformLinks: [{ label: 'Steamで見る', href: 'https://store.steampowered.com/app/2674550/Electric_Alps/' }],
   },
 ];
 const JAMS = [
@@ -318,22 +320,22 @@ const MM2 = [
     id: 'salt-mines',
     title: 'The Salt Mines',
     image: 'assets/img/modal_headers/saltminesbig.jpg',
-    desc: 'A massive level that took me over a year to build, it tries to trick players by changing the level between player deaths.',
-    platformLinks: [{ label: 'watch it', href: 'https://www.youtube.com/watch?v=yeEz8G0OYCo&list=PL5RGR66dtNhQibjD6d6ruJkIktu_RpWJG&index=2' }, { label: '日本語で見る', href: 'https://www.youtube.com/watch?v=UB1eqFNOoYE&list=PL5RGR66dtNhQibjD6d6ruJkIktu_RpWJG&index=6' }],
+    desc: '制作に1年以上かけた大規模なコースです。プレイヤーがミスするたびにコース内容が変化し、プレイヤーをだます仕掛けになっています。',
+    platformLinks: [{ label: '見る', href: 'https://www.youtube.com/watch?v=yeEz8G0OYCo&list=PL5RGR66dtNhQibjD6d6ruJkIktu_RpWJG&index=2' }, { label: '日本語で見る', href: 'https://www.youtube.com/watch?v=UB1eqFNOoYE&list=PL5RGR66dtNhQibjD6d6ruJkIktu_RpWJG&index=6' }],
   },
   {
     id: 'trashcan',
     title: 'Carls trash can',
     image: 'assets/img/modal_headers/trashcanbig.jpg',
-    desc: 'Fairly normal troll level that features a ridiculously over the top ending which made the level super popular.',
-    platformLinks: [{ label: 'watch it', href: 'https://www.youtube.com/watch?v=EkTHhk07nv4&list=PL5RGR66dtNhQibjD6d6ruJkIktu_RpWJG' }, { label: '日本語で見る', href: 'https://www.youtube.com/watch?v=CjetT3X9u0o&list=PL5RGR66dtNhQibjD6d6ruJkIktu_RpWJG&index=14' }],
+    desc: '比較的オーソドックスなトロールコースですが、非常に大げさなラストが話題となり、多くの人に遊ばれました。',
+    platformLinks: [{ label: '見る', href: 'https://www.youtube.com/watch?v=EkTHhk07nv4&list=PL5RGR66dtNhQibjD6d6ruJkIktu_RpWJG' }, { label: '日本語で見る', href: 'https://www.youtube.com/watch?v=CjetT3X9u0o&list=PL5RGR66dtNhQibjD6d6ruJkIktu_RpWJG&index=14' }],
   },
   {
     id: 'salt-jungle',
     title: 'The Saltier Jungle',
     image: 'assets/img/modal_headers/saltierjungle.jpg',
-    desc: 'I made this level to experiment with speed traps and permadeath. It ended up having some not fun to play sections but also some awesome moments',
-    platformLinks: [{ label: 'watch it', href: 'https://www.youtube.com/watch?v=92zWrmyWMMI&list=PL5RGR66dtNhQibjD6d6ruJkIktu_RpWJG&index=23' }],
+    desc: 'スピードトラップとパーマデスを試すために制作したコースです。遊びにくい部分もありますが、とても面白い瞬間も多くあります',
+    platformLinks: [{ label: '見る', href: 'https://www.youtube.com/watch?v=92zWrmyWMMI&list=PL5RGR66dtNhQibjD6d6ruJkIktu_RpWJG&index=23' }],
   },
 ];
 const ACADEMIC = [
@@ -341,22 +343,22 @@ const ACADEMIC = [
     id: 'master-thesis',
     title: 'Master\'s thesis on P2W microtransactions',
     image: 'assets/img/modal_headers/thesis.png',
-    desc: 'Academic research into how pay-to-win mechanics affect various aspects of the player experience in games.',
-    platformLinks: [{ label: 'read it', href: 'https://netlibrary.aau.at/obvuklhs/download/pdf/12269481' }],
+    desc: 'Pay to Win型マイクロトランザクションがゲーム体験のさまざまな側面に与える影響について研究した修士論文です。',
+    platformLinks: [{ label: '読む', href: 'https://netlibrary.aau.at/obvuklhs/download/pdf/12269481' }],
   },
   {
     id: 'identity-paper',
     title: 'Games as playgrounds of identity',
     image: 'assets/img/modal_headers/id.png',
-    desc: 'Paper on how digital game spaces can provide environments for experimenting with identity, gender, and self-presentation.',
-    platformLinks: [{ label: 'read it', href: 'assets/files/Identity 2.0 - Mano Marichal.pdf' }],
+    desc: 'デジタルゲーム空間が、アイデンティティ、ジェンダー、自己表現を試す場となる可能性について論じた論文です。',
+    platformLinks: [{ label: '読む', href: 'assets/files/Identity 2.0 - Mano Marichal.pdf' }],
   },
   {
     id: 'oosting-paper',
     title: 'Boosting culture in MMORPGs',
     image: 'assets/img/modal_headers/boost.avif',
-    desc: 'Descriptive paper on the growing market for paying other players to carry you through content, and how game design structures create that demand.',
-    platformLinks: [{ label: 'read it', href: 'https://netlibrary.aau.at/download/pdf/8578040.pdf' }],
+    desc: '他のプレイヤーに報酬を支払い、コンテンツ攻略を手伝ってもらう文化の拡大と、それを生み出すゲームデザインについて考察した論文です。',
+    platformLinks: [{ label: '読む', href: 'https://netlibrary.aau.at/download/pdf/8578040.pdf' }],
   },
 ];
 const PROGRAMMING = [
@@ -364,22 +366,22 @@ const PROGRAMMING = [
     id: 'size--',
     title: 'Size--',
     image: 'assets/img/modal_headers/pal.jpg',
-    desc: 'Application that can compress and uncompress data featuring 7 different algorithms, written in C++. ',
-    platformLinks: [{ label: 'view on github', href: 'https://github.com/pals4life/size--' }],
+    desc: '7種類のアルゴリズムを搭載したデータ圧縮・展開アプリケーションです。C++で開発しました。',
+    platformLinks: [{ label: 'Githubで見る', href: 'https://github.com/pals4life/size--' }],
   },
   {
     id: 'c-compiler',
     title: 'C compiler',
     image: 'assets/img/modal_headers/compiler.png',
-    desc: 'Compiles a meaningful subset of C to LLVM IR and MIPS assembly, with semantic error detection and AST visualisation, written in Python.',
-    platformLinks: [{ label: 'view on github', href: 'https://github.com/manomarichal/project-compilers' }],
+    desc: 'C言語の主要なサブセットをLLVM IRおよびMIPSアセンブリへコンパイルするコンパイラです。意味解析によるエラー検出やASTの可視化にも対応しています。Pythonで開発しました。',
+    platformLinks: [{ label: 'Githubで見る', href: 'https://github.com/manomarichal/project-compilers' }],
   },
   {
     id: 'graphics-engine',
     title: '3D graphics engine',
     image: 'assets/img/modal_headers/cg.jpg',
-    desc: 'Graphics engine from scratch in C++. Supports rendering of two and three dimensional shapes, textures, lighting and shadows, written in C++',
-    platformLinks: [{ label: 'view on github', href: 'https://github.com/manomarichal/computer-graphics-engine' }],
+    desc: 'C++で一から開発した3Dグラフィックスエンジンです。2D・3D図形、テクスチャ、ライティング、シャドウの描画に対応しています。',
+    platformLinks: [{ label: 'Githubで見る', href: 'https://github.com/manomarichal/computer-graphics-engine' }],
   },
 ];
 const OTHER = [
@@ -387,14 +389,14 @@ const OTHER = [
     id: 'japanese',
     title: 'Japanese',
     image: 'assets/img/modal_headers/jp.jpg',
-    desc: 'Self-studied for 3+ years and got to high N2 level. I can read books and have conversations comfortably.',
+    desc: '3年以上独学で勉強し、日本語能力試験N2相当のレベルができました。本を読んだり、会話したりすることができます。',
     platformLinks: [],
   },
   {
     id: 'dand',
     title: 'Dungeons & Dragons',
     image: 'assets/img/modal_headers/dd.webp',
-    desc: 'I have been playing for over 7 years now and along the way have designed various oneshots, dungeons and classes',
+    desc: '7年以上プレイして、その間にさまざまなOneshots、ダンジョン、クラスを自作してきました',
     platformLinks: [],
   },
 ];
